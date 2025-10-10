@@ -46,14 +46,40 @@ public class Librarian extends User{
         }
     }
 
-    // public void issueBook(Library lib, Member m, String title) {
-    //     m.borrowBook(lib, title);
-    //     Transaction t1 = new Transaction(m.getMemberID(), b.getISBN(), false);
+    public void issueBook(Library lib, Member m, String title) {
+        for (Book b : lib.books) {
+           if (b.getTitle().equals(title) && b.isAvailable() == true) {
+            if (m.getBorrowedCount() != m.MAX_ALLOWED) {
+                m.getBorrowedBooks()[m.getBorrowedCount()] = b;
+                m.incBorrowedCount();
+                lib.transactions.add(new Transaction(m.getMemberID(), b.getISBN(), false));
+            } else {
+                System.out.println("Member Reached Borrowing Limit.");
+            }
+           } else {
+            System.out.println("Book Not Found.");
+           }
+        }
         
-    // }
+        // Book b = Book.getBook(lib, title);
+        // m.borrowBook(lib, title);
+        // Transaction t1 = new Transaction(m.getMemberID(), b.getISBN(), false);
+        // lib.transactions.add(t1);
+    }
 
     public void returnBook(Library lib, Member m, String title) {
-        m.returnBook(lib, title);
+        Book b = Book.getBook(lib, title);
+        // m.returnBook(lib, title);
+       for (int i = 0; i<m.getBorrowedBooks().length; i++) {
+        if (m.getBorrowedBooks()[i].getTitle().equals(title)) {
+            m.getBorrowedBooks()[i] = null;
+            m.decBorrowedCount();
+        }
+
+        // for (int i = 0; i<lib.transactions.length; i++) {
+        //     if (transactions.get(i).isbn.equals(b.getISBN()))
+        // }
+       }
     }
 
     public void viewIssued(Library lib) {

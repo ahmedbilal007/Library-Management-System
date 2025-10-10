@@ -2,7 +2,7 @@ public class Member extends User{
     private String memberID;
     private Book[] borrowedBooks;
     // private Transaction[] borrowingHistory;
-    private final int MAX_ALLOWED = 3;
+    public final int MAX_ALLOWED = 3;
     private int borrowedCount;
 
     public Member(String name, String address, int contact, String email, String memberID) {
@@ -58,5 +58,16 @@ public class Member extends User{
         return this.borrowedBooks;
     }
 
+    public int getBorrowedCount() {
+        return this.borrowedCount;
+    }
+
+    public void incBorrowedCount() {
+        this.borrowedCount++;
+    }
+
+    public void decBorrowedCount() {
+        this.borrowedCount--;
+    }
 
 }

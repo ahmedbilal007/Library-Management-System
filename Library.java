@@ -3,6 +3,8 @@ import java.util.ArrayList;
 public class Library {
     ArrayList<Book> books = new ArrayList<Book>();
     ArrayList<Member> members = new ArrayList<Member>();
+    ArrayList<Transaction> transactions = new ArrayList<Transaction>();
+
     public int booksCount;
     
     public boolean searchBook(String title) {
@@ -25,10 +27,9 @@ public class Library {
     System.out.print(m1.borrowBook(l1, "Java"));
     ahmed.removeBook(l1, "Java");
     
-
     }
 }
 
 
 
-// Library --- Issue Book -- transaction ///
+// Librarian -- Return Book -- Transactions
