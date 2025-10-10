@@ -26,17 +26,45 @@ public class Librarian extends User{
         input.nextLine();
         System.out.print("Enter Publisher Name: ");
         publisher = input.nextLine();
-        System.out.print("Enter Number of Total Copies: ");
-        totalCopies = input.nextInt();
-        System.out.print("Enter Number of Available Copies: ");
-        availableCopies = input.nextInt();
         input.nextLine();
         System.out.print("Enter Author Name: ");
         author = input.nextLine();
-        Book b = new Book(ID,title, ISBN, publisher, totalCopies, author);
+        Book b = new Book(ID,title, ISBN, publisher, author);
+
         lib.books.add(b);
+        lib.booksCount += 1;
+        System.out.println("----------------------------------");
         return true;
     }
+
+    public void removeBook(Library lib, String title) {
+        for (Book b : lib.books) {
+            if (b.getTitle().equals(title)) {
+                lib.books.remove(b);
+                lib.booksCount -= 1;
+            }
+        }
+    }
+
+    // public void issueBook(Library lib, Member m, String title) {
+    //     m.borrowBook(lib, title);
+    //     Transaction t1 = new Transaction(m.getMemberID(), b.getISBN(), false);
+        
+    // }
+
+    public void returnBook(Library lib, Member m, String title) {
+        m.returnBook(lib, title);
+    }
+
+    public void viewIssued(Library lib) {
+        for (Book b : lib.books) {
+            if (b.isAvailable() == true) {
+
+            }
+        }
+    }
+    
+
 }
 
 

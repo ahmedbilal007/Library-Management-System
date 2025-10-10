@@ -11,8 +11,43 @@ public class Member extends User{
         this.borrowedBooks = new Book[MAX_ALLOWED];
     }
 
+    public String borrowBook(Library lib, String title) {
+        Book b = Book.getBook(lib, title);
+        if (b != null) {
+            if (this.borrowedCount < MAX_ALLOWED) {
+                this.borrowedBooks[borrowedCount] = b;
+                borrowedCount++;
+                b.setStatus(false);
+                return title + " by " + b.getAuthor() + " borrowed by " + this.getName();
+            } else {
+                return "Limit Reached.";
+            }
+        }
+        return "Book not found";
+    }   
+
+
+    public String returnBook(Library lib, String title) {
+        Book b = Book.getBook(lib, title);
+        for (int i = 0; i<borrowedBooks.length; i++) {
+            if (borrowedBooks[i].getTitle().equals(title)) {
+                borrowedBooks[i] = null;
+                borrowedCount--;
+                b.setStatus(true);
+                return "Book Returned";
+            }
+        }
+        return "Book not found";
+    }
+    
+    public void displayBorrowed() {
+        for (Book b : borrowedBooks) {
+            System.out.println(b.getDetails());
+        }
+    }
+    
     public String displayDetails() {
-        return String.format("--- Member Details ---\nName: %s\nID: %s\nBorrowed Books: %s", this.getName(), this.getMemberID(),getBorrowedBooks());
+        return String.format("--- Member Details ---\nName: %s\nID: %s\n", this.getName(), this.getMemberID());
     }
 
     public String getMemberID() {
