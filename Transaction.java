@@ -13,4 +13,8 @@ public class Transaction {
         this.isReturned = isReturned;
         this.transactionCount++;
     } 
+
+    public void displayInfo() {
+        System.out.println(this.transactionCount + " : " + this.memberID + " : " + this.isbn + " : " + this.isReturned + " : " + this.transactionCount);
+    }
 }

@@ -26,16 +26,20 @@ public class Librarian extends User{
         input.nextLine();
         System.out.print("Enter Publisher Name: ");
         publisher = input.nextLine();
-        input.nextLine();
         System.out.print("Enter Author Name: ");
         author = input.nextLine();
         Book b = new Book(ID,title, ISBN, publisher, author);
-
         lib.books.add(b);
         lib.booksCount += 1;
         System.out.println("----------------------------------");
         return true;
     }
+
+    public void add(Book b, Library lib) {
+        lib.books.add(b);
+        lib.booksCount++;
+    }
+
 
     public void removeBook(Library lib, String title) {
         for (Book b : lib.books) {
@@ -61,40 +65,47 @@ public class Librarian extends User{
            }
         }
         
-        // Book b = Book.getBook(lib, title);
-        // m.borrowBook(lib, title);
-        // Transaction t1 = new Transaction(m.getMemberID(), b.getISBN(), false);
-        // lib.transactions.add(t1);
     }
 
     public void returnBook(Library lib, Member m, String title) {
         Book b = Book.getBook(lib, title);
-        // m.returnBook(lib, title);
        for (int i = 0; i<m.getBorrowedBooks().length; i++) {
-        if (m.getBorrowedBooks()[i].getTitle().equals(title)) {
+        if (m.getBorrowedBooks()[i] != null && m.getBorrowedBooks()[i].getTitle().equals(title)) {
             m.getBorrowedBooks()[i] = null;
             m.decBorrowedCount();
         }
 
-        // for (int i = 0; i<lib.transactions.length; i++) {
-        //     if (transactions.get(i).isbn.equals(b.getISBN()))
-        // }
+        for (Transaction t : lib.transactions) {
+            if (t.isbn == (b.getISBN())) {
+                t.isReturned = true;
+            }
+        }
        }
     }
 
     public void viewIssued(Library lib) {
         for (Book b : lib.books) {
-            if (b.isAvailable() == true) {
-
-            }
+            if (b.isAvailable() == false) {
+                System.out.println(b.getDetails());
+            } 
         }
     }
+
+    // public void addMember(Library lib, Member m) {
+    //     for (int i = 0; i<lib.members.size(); i++) {
+    //         if (lib.members.get(i).getMemberID().equals(m.getMemberID())) {
+    //             System.out.println("Member already added");
+    //             break;
+    //         }
+    //         else if (i == lib.members.size()) {
+    //             lib.members.add(m);
+    //             System.out.println("Member Added Successfully");
+    //         }
+    //     }
+        
+    // }
     
 
 }
 
-
-
-
-// private String bookID;
     

@@ -11,33 +11,13 @@ public class Member extends User{
         this.borrowedBooks = new Book[MAX_ALLOWED];
     }
 
-    public String borrowBook(Library lib, String title) {
-        Book b = Book.getBook(lib, title);
-        if (b != null) {
-            if (this.borrowedCount < MAX_ALLOWED) {
-                this.borrowedBooks[borrowedCount] = b;
-                borrowedCount++;
-                b.setStatus(false);
-                return title + " by " + b.getAuthor() + " borrowed by " + this.getName();
-            } else {
-                return "Limit Reached.";
-            }
-        }
-        return "Book not found";
+    public void borrowBook(Library lib, Librarian l1, String title) {
+        l1.issueBook(lib, this, title);
     }   
 
 
-    public String returnBook(Library lib, String title) {
-        Book b = Book.getBook(lib, title);
-        for (int i = 0; i<borrowedBooks.length; i++) {
-            if (borrowedBooks[i].getTitle().equals(title)) {
-                borrowedBooks[i] = null;
-                borrowedCount--;
-                b.setStatus(true);
-                return "Book Returned";
-            }
-        }
-        return "Book not found";
+    public void returnBook(Library lib, Librarian l1, String title) {
+        l1.returnBook(lib, this, title);
     }
     
     public void displayBorrowed() {
