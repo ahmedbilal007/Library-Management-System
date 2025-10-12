@@ -16,8 +16,8 @@ public class Book {
     }
 
     public String getDetails() {
-        return String.format("--- BOOK DETAILS ---\nBook Title: %s\nBook ID: %s\nISBN: %s\nAuthor: %s\nPublisher: %s",
-        this.getTitle(),this.getBookID(), this.getISBN(), this.getAuthor());
+        return String.format("--- BOOK DETAILS ---\nBook Title: %s\nBook ID: %s\nISBN: %d\nAuthor: %s\nPublisher: %s",
+        this.getTitle(),this.getBookID(), this.getISBN(), this.getAuthor(), this.getPublisher());
     }
     public boolean isAvailable() {
         return this.status;

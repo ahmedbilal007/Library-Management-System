@@ -1,3 +1,4 @@
+import java.time.*;
 public class Transaction {
     public String transactionID;
     public String memberID;
@@ -15,6 +16,9 @@ public class Transaction {
     } 
 
     public void displayInfo() {
-        System.out.println(this.transactionCount + " : " + this.memberID + " : " + this.isbn + " : " + this.isReturned + " : " + this.transactionCount);
+        System.out.println("Member ID: " + this.memberID);
+        System.out.println("ISBN Number: " + this.isbn);
     }
+
+    
 }
