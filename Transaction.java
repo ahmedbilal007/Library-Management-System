@@ -12,12 +12,15 @@ public class Transaction {
         this.memberID = memberID;
         this.isbn = isbn; 
         this.isReturned = isReturned;
-        this.transactionCount++;
+        // this.transactionCount++;
     } 
 
     public void displayInfo() {
+        System.out.println("Transaction ID: " + this.transactionID);
         System.out.println("Member ID: " + this.memberID);
         System.out.println("ISBN Number: " + this.isbn);
+        System.out.println("Status: " + isReturned);
+        System.out.println();
     }
 
     

@@ -8,9 +8,11 @@ public abstract class User {
         this.name = name;
         this.address = address;
         this.contact = contact;
-        this.email = email;
+        if (checkEmail(email) == true)  this.email = email;
+        else {
+            System.out.println("Invalid Email Address.");
+        }
     }
-
 
     public String getName() {
         return name;
@@ -44,5 +46,7 @@ public abstract class User {
         this.email = email;
     }
 
-
+    public boolean checkEmail(String email) {
+        return email.endsWith("@gmail.com");
+    }
 }
