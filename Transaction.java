@@ -1,4 +1,3 @@
-import java.time.*;
 public class Transaction {
     public String transactionID;
     public String memberID;
@@ -16,6 +15,7 @@ public class Transaction {
     } 
 
     public void displayInfo() {
+        System.out.println();
         System.out.println("Transaction ID: " + this.transactionID);
         System.out.println("Member ID: " + this.memberID);
         System.out.println("ISBN Number: " + this.isbn);

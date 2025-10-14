@@ -8,7 +8,7 @@ public abstract class User {
         this.name = name;
         this.address = address;
         this.contact = contact;
-        if (checkEmail(email) == true)  this.email = email;
+        if (checkEmail(email) == true) this.email = email;
         else {
             System.out.println("Invalid Email Address.");
         }

@@ -1,5 +1,3 @@
-
-import java.time.*;
 import java.util.Scanner;
 public class Librarian extends User{ 
     Scanner input = new Scanner(System.in);
@@ -10,36 +8,29 @@ public class Librarian extends User{
         this.librarianID = librarianID;
     }
  
+    
     public boolean addBook(Library lib) {
-        String ID;
-        String title;
-        int ISBN;
-        String publisher;
-        int totalCopies;
-        int availableCopies;
-        boolean status;
-        String author;
         System.out.print("Enter Book ID: ");
-        ID = input.nextLine();
+        String ID = input.nextLine();
         System.out.print("Enter Book Title: ");
-        title = input.nextLine();
+        String title = input.nextLine();
         System.out.print("Enter Book ISBN: ");
-        ISBN = input.nextInt();
+        int ISBN = input.nextInt();
         input.nextLine();
         System.out.print("Enter Publisher Name: ");
-        publisher = input.nextLine();
+        String publisher = input.nextLine();
         System.out.print("Enter Author Name: ");
-        author = input.nextLine();
+        String author = input.nextLine();
         Book b = new Book(ID,title, ISBN, publisher, author);
         lib.books.add(b);
-        lib.booksCount += 1;
+        lib.incBookCount();
         System.out.println("----------------------------------");
         return true;
     }
 
     public void add(Book b, Library lib) {
         lib.books.add(b);
-        lib.booksCount++;
+        lib.incBookCount();
     }
 
 
@@ -47,7 +38,7 @@ public class Librarian extends User{
         for (Book b : lib.books) {
             if (b.getTitle().equals(title)) {
                 lib.books.remove(b);
-                lib.booksCount -= 1;
+                lib.decBookCount();
             }
         }
     }
@@ -105,7 +96,7 @@ public class Librarian extends User{
         }
     }
 
-    public void addMember(Library lib, Member m) {
+    public void addMember(Library lib) {
         System.out.println("Enter name: ");
         String name = input.nextLine();
         System.out.println("Enter address: ");
@@ -113,17 +104,46 @@ public class Librarian extends User{
         System.out.println("Enter contact: ");
         int contact = input.nextInt();
         input.nextLine();
-        System.out.println("Enter emial: ");
+        System.out.println("Enter email: ");
         String email = input.nextLine();
+        if (checkEmail(email) == false) {
+            System.out.println("Invalid Email. Enter again: ");
+             email = input.nextLine();
+        }
         System.out.println("Enter Member ID: ");
         String id = input.nextLine();
 
-        if (lib.searchMember(id) == false) {
-        m = new Member(name, address, contact, email, id, lib);
+        if (lib.searchMember(id) == false ) {
+        Member m = new Member(name, address, contact, email, id, lib);
         System.out.println("");
         } else {
-            System.out.println("Memer Already Added...");
+            System.out.println("Member Already Added...");
         } 
+    }
+
+    public void updateBookDetails(Library lib) {
+        System.out.println("Enter Book Title: ");
+        String title = input.nextLine();
+        // input.nextLine();
+        if (lib.searchBook(title) == true) {
+            Book b = Book.getBook(lib, title);
+            System.out.print("Enter Book ID: ");
+            String ID = input.nextLine();
+            System.out.print("Enter Book Title: ");
+            String btitle = input.nextLine();
+            System.out.print("Enter Book ISBN: ");
+            int ISBN = input.nextInt();
+            input.nextLine();
+            System.out.print("Enter Publisher Name: ");
+            String publisher = input.nextLine();
+            System.out.print("Enter Author Name: ");
+            String author = input.nextLine();
+            b.setDetails(ID, btitle, ISBN, publisher, author);
+        };
+    }  
+
+    public String getLibrarianID() {
+        return librarianID;
     }
 }
 

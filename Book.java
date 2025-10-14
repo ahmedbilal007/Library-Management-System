@@ -58,4 +58,12 @@ public class Book {
         return null;
     }
 
+    public void setDetails(String bookID, String title, int ISBN, String publisher, String author) {
+        this.bookID = bookID;
+        this.title = title;
+        this.ISBN = ISBN;
+        this.publisher =  publisher;
+        this.author = author;
+    }
+
 }
