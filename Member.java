@@ -26,7 +26,7 @@ public class Member extends User{
     
     public void displayBorrowed() {
         for (Book b : borrowedBooks) {
-            System.out.println(b.getDetails());
+            if (b != null) System.out.println(b.getDetails());
         }
     }
 

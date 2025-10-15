@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Scanner;
 public class Librarian extends User{ 
     Scanner input = new Scanner(System.in);
@@ -76,6 +77,7 @@ public class Librarian extends User{
             for (Transaction t : m.getBorrowingHistory()) {
                 if (t.isbn == b.getISBN()) {
                     t.isReturned = true;
+                    t.returnedDate = LocalDate.now();
                 }
             }
         }
