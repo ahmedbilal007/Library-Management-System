@@ -14,18 +14,18 @@ public class Main {
         Book b1 = new Book("AB234", "JAVA", 12345, "Ahmed", "Bilal");
         Book b2 = new Book("AB257", "Python", 12235, "Ahmed", "Bilal");
         Book b3 = new Book("AB984", "Html", 123925, "Ahmed", "Bilal");
-        Book b4 = new Book("AB984", "Css", 123925, "Ahmed", "Bilal");
 
         ahmed.add(b1, mainLibrary);
-        ahmed.add(b2, mainLibrary);
-        ahmed.add(b3, mainLibrary);
-        ahmed.add(b4, mainLibrary);
+        ahmed.addNewBook(mainLibrary);
 
-        ahmed.issueBook(mainLibrary, m1, "JAVA");
-        ahmed.issueBook(mainLibrary, m1, "Python");
-        ahmed.issueBook(mainLibrary, m1, "Python");
-        ahmed.issueBook(mainLibrary, m1, "Html");
-        ahmed.issueBook(mainLibrary, m1, "Css");
+    
+        // mainLibrary.searchBook();
+
+        // ahmed.issueBook(mainLibrary, m1, "JAVA");
+        // ahmed.issueBook(mainLibrary, m1, "Python");
+        // ahmed.issueBook(mainLibrary, m1, "Python");
+        // ahmed.issueBook(mainLibrary, m1, "Html");
+        // ahmed.issueBook(mainLibrary, m1, "Css");
 
 
         // for (Transaction t : mainLibrary.transactions) {

@@ -6,6 +6,7 @@ public class Book {
     private boolean status;
     private String author;
 
+    public Book() {}
     public Book(String bookID, String title, int ISBN, String publisher, String author) {
         this.bookID = bookID;
         this.title = title;
@@ -58,11 +59,24 @@ public class Book {
         return null;
     }
 
-    public void setDetails(String bookID, String title, int ISBN, String publisher, String author) {
+
+    public void setBookID(String bookID) {
         this.bookID = bookID;
+    }
+
+    public void setTitle(String title) {
         this.title = title;
-        this.ISBN = ISBN;
-        this.publisher =  publisher;
+    }
+
+    public void setISBN(int iSBN) {
+        ISBN = iSBN;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public void setAuthor(String author) {
         this.author = author;
     }
 }

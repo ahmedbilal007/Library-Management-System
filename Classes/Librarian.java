@@ -10,20 +10,53 @@ public class Librarian extends User{
     }
  
     
-    public boolean addBook(Library lib) {
+    public boolean addNewBook(Library lib) {
+        Book newBook = new Book();
         System.out.print("Enter Book ID: ");
         String ID = input.nextLine();
+        for (int i = 0; i<lib.books.size(); i++) {
+            if (lib.books.get(i).getBookID().equals(ID)) 
+                { 
+                    System.out.println("A book is already available with this ID.");
+                    System.out.print("Enter a different ID: ");
+                    String id = input.nextLine();
+                    newBook.setBookID(id);
+                }
+            else if (i == lib.books.size()) newBook.setBookID(ID); 
+        }
+
         System.out.print("Enter Book Title: ");
         String title = input.nextLine();
+        for (int i = 0; i<lib.books.size(); i++) {
+            if (lib.books.get(i).getTitle().equals(title)) 
+            {
+                System.out.println("A book is already available with this Title.");
+                System.out.print("Enter a different Title: ");
+                String titl = input.nextLine();
+                newBook.setTitle(titl);
+            }
+            else if (i == lib.books.size()) newBook.setTitle(title); 
+        }
+        
         System.out.print("Enter Book ISBN: ");
         int ISBN = input.nextInt();
+        for (int i = 0; i<lib.books.size(); i++) {
+            if (lib.books.get(i).getISBN() == ISBN) 
+            {
+                System.out.println("A book is already available with this ISBN.");
+                System.out.print("Enter a different ISBN: ");
+                int is = input.nextInt();
+                newBook.setISBN(is);
+
+            }
+            else if (i == lib.books.size()) newBook.setISBN(ISBN); 
+        }
         input.nextLine();
         System.out.print("Enter Publisher Name: ");
         String publisher = input.nextLine();
         System.out.print("Enter Author Name: ");
         String author = input.nextLine();
-        Book b = new Book(ID,title, ISBN, publisher, author);
-        lib.books.add(b);
+        lib.books.add(newBook);
         lib.incBookCount();
         System.out.println("----------------------------------");
         return true;
@@ -99,7 +132,7 @@ public class Librarian extends User{
         }
     }
 
-    public void addMember(Library lib) {
+    public void addNewMember(Library lib) {
         System.out.println("Enter name: ");
         String name = input.nextLine();
         System.out.println("Enter address: ");
@@ -125,22 +158,51 @@ public class Librarian extends User{
     }
 
     public void updateBookDetails(Library lib) {
-        System.out.println("Enter Book Title to update: ");
+        String choice = "";
+        System.out.println("Enter Book ID: ");
         String title = input.nextLine();
-        if (lib.searchBook(title) == true) {
+        if (lib.searchBook() == true) {
             Book b = Book.getBook(lib, title);
+            System.out.print("Do you want to update Book ID (y/n): ");
+            choice = input.next();
+            if (choice.equals("y")) {
             System.out.print("Enter Book ID: ");
             String ID = input.nextLine();
-            System.out.print("Enter Book Title: ");
-            String btitle = input.nextLine();
-            System.out.print("Enter Book ISBN: ");
-            int ISBN = input.nextInt();
+            b.setBookID(ID);
+            } else if (choice.equals("n")) System.out.println("Book ID unchanged.");
+
+            System.out.print("Do you want to update Book Title (y/n): ");
+            choice = input.next();
+            if (choice.equals("y")) {
+                System.out.print("Enter Book Title: ");
+                String btitle = input.nextLine();
+                b.setTitle(btitle);
+            } else if (choice.equals("n")) System.out.println("Book Title unchanged.");
+
+            System.out.print("Do you want to update Book ISBN (y/n): ");
+            choice = input.next();
+            if (choice.equals("y")) {
+                System.out.print("Enter Book ISBN: ");
+                int ISBN = input.nextInt();
+                b.setISBN(ISBN);
+            } else if (choice.equals("n")) System.out.println("Book ISBN unchanged.");
             input.nextLine();
-            System.out.print("Enter Publisher Name: ");
-            String publisher = input.nextLine();
-            System.out.print("Enter Author Name: ");
-            String author = input.nextLine();
-            b.setDetails(ID, btitle, ISBN, publisher, author);
+
+            System.out.print("Do you want to update Book Publisher (y/n): ");
+            choice = input.next();
+            if (choice.equals("y")) {
+                System.out.print("Enter Publisher Name: ");
+                String publisher = input.nextLine();
+                b.setPublisher(publisher);
+            } else if (choice.equals("n")) System.out.println("Book Publisher unchanged.");
+
+            System.out.print("Do you want to update Book Publisher (y/n): ");
+            choice = input.next();
+            if (choice.equals("y")) {
+                System.out.print("Enter Author Name: ");
+                String author = input.nextLine();
+                b.setAuthor(author);
+            } else if (choice.equals("n")) System.out.println("Book Author unchanged.");
         }
     }  
 
