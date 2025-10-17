@@ -49,4 +49,5 @@ public abstract class User {
     public boolean checkEmail(String email) {
         return email.endsWith("@gmail.com");
     }
+
 }

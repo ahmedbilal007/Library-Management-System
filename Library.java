@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 public class Library {
 
-    ArrayList<Book> books = new ArrayList<Book>();
+    public ArrayList<Book> books = new ArrayList<Book>();
     ArrayList<Member> members = new ArrayList<Member>();
     ArrayList<Transaction> transactions = new ArrayList<Transaction>();
     ArrayList<Librarian> librarians = new ArrayList<Librarian>();
@@ -33,5 +33,7 @@ public class Library {
         }
         return false;
     }
+
+    // public ArrayList getBooks() {return this.books;}
 }
 

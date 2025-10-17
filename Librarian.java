@@ -35,9 +35,9 @@ public class Librarian extends User{
     }
 
 
-    public void removeBook(Library lib, String title) {
+    public void removeBook(Library lib, String bookID) {
         for (Book b : lib.books) {
-            if (b.getTitle().equals(title)) {
+            if (b.getBookID().equals(bookID)) {
                 lib.books.remove(b);
                 lib.decBookCount();
             }
@@ -46,45 +46,46 @@ public class Librarian extends User{
 
     public void issueBook(Library lib, Member m, String title) {
         for (int i = 0; i < lib.books.size(); i++) {
-           if (lib.books.get(i).getTitle().equals(title) && (lib.books.get(i).isAvailable() == true)) {
-            if (m.getBorrowedCount() != m.MAX_ALLOWED) {
+            if (lib.books.get(i).getTitle().equals(title)) {
+                if (lib.books.get(i).isAvailable() == false) {
+                    System.out.println("Book is already issued.");
+                    return;
+                } 
+            if (m.getBorrowedCount() != m.getMaxAllowed()) {
                 m.getBorrowedBooks()[m.getBorrowedCount()] = lib.books.get(i);
                 m.incBorrowedCount();
-                
                 Transaction t = new Transaction(m.getMemberID(), lib.books.get(i).getISBN(), false);
                 lib.transactions.add(t);
                 lib.books.get(i).setStatus(false);
                 m.getBorrowingHistory().add(t);
-
                 break;
             } else {
                 System.out.println("Member Reached Borrowing Limit.");
             }
-           } else if (i == lib.books.size()) {
+        } else if (i == lib.books.size()) {
             System.out.println("Book Not Found.");
            }
         }
-        
     }
 
     public void returnBook(Library lib, Member m, String title) {
         Book b = Book.getBook(lib, title);
-       for (int i = 0; i<m.getBorrowedBooks().length; i++) {
+        for (int i = 0; i<m.getBorrowedBooks().length; i++) {
         if (m.getBorrowedBooks()[i] != null && m.getBorrowedBooks()[i].getTitle().equals(title)) {
             m.getBorrowedBooks()[i] = null;
             m.decBorrowedCount();
             lib.books.get(i).setStatus(true);
             for (Transaction t : m.getBorrowingHistory()) {
-                if (t.isbn == b.getISBN()) {
-                    t.isReturned = true;
+                if (t.getisbn() == b.getISBN()) {
+                    t.setStatusOfTransaction(true);
                     t.returnedDate = LocalDate.now();
                 }
             }
         }
 
         for (Transaction t : lib.transactions) {
-            if (t.isbn == (b.getISBN())) {
-                t.isReturned = true;
+            if (t.getisbn() == (b.getISBN())) {
+                t.setStatusOfTransaction(true);
             }
         }
        }
@@ -124,9 +125,8 @@ public class Librarian extends User{
     }
 
     public void updateBookDetails(Library lib) {
-        System.out.println("Enter Book Title: ");
+        System.out.println("Enter Book Title to update: ");
         String title = input.nextLine();
-        // input.nextLine();
         if (lib.searchBook(title) == true) {
             Book b = Book.getBook(lib, title);
             System.out.print("Enter Book ID: ");
@@ -141,7 +141,7 @@ public class Librarian extends User{
             System.out.print("Enter Author Name: ");
             String author = input.nextLine();
             b.setDetails(ID, btitle, ISBN, publisher, author);
-        };
+        }
     }  
 
     public String getLibrarianID() {

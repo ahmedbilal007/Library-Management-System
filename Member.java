@@ -4,7 +4,7 @@ public class Member extends User{
     private String memberID;
     private Book[] borrowedBooks;
     private ArrayList<Transaction> borrowingHistory = new ArrayList<Transaction> ();
-    public final int MAX_ALLOWED = 3;
+    private final int MAX_ALLOWED = 3;
     private int borrowedCount;
 
     public Member(String name, String address, int contact, String email, String memberID, Library lib) {
@@ -64,4 +64,7 @@ public class Member extends User{
         return borrowingHistory;
     }
 
+    public int getMaxAllowed() {
+        return this.MAX_ALLOWED;
+    }
 }

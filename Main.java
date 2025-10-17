@@ -12,20 +12,30 @@ public class Main {
 
 
         Book b1 = new Book("AB234", "JAVA", 12345, "Ahmed", "Bilal");
-        Book b2 = new Book("AB257", "Python", 125, "Ahmed", "Bilal");
+        Book b2 = new Book("AB257", "Python", 12235, "Ahmed", "Bilal");
+        Book b3 = new Book("AB984", "Html", 123925, "Ahmed", "Bilal");
+        Book b4 = new Book("AB984", "Css", 123925, "Ahmed", "Bilal");
+
         ahmed.add(b1, mainLibrary);
         ahmed.add(b2, mainLibrary);
+        ahmed.add(b3, mainLibrary);
+        ahmed.add(b4, mainLibrary);
 
         ahmed.issueBook(mainLibrary, m1, "JAVA");
         ahmed.issueBook(mainLibrary, m1, "Python");
-        for (Transaction t : mainLibrary.transactions) {
-            t.displayInfo();
-        }
+        ahmed.issueBook(mainLibrary, m1, "Python");
+        ahmed.issueBook(mainLibrary, m1, "Html");
+        ahmed.issueBook(mainLibrary, m1, "Css");
 
-        ahmed.returnBook(mainLibrary, m1, "JAVA");
-        for (Transaction t : mainLibrary.transactions) {
-            t.displayInfo();
-        }
+
+        // for (Transaction t : mainLibrary.transactions) {
+        //     t.displayInfo();
+        // }
+
+        // ahmed.returnBook(mainLibrary, m1, "JAVA");
+        // for (Transaction t : mainLibrary.transactions) {
+        //     t.displayInfo();
+        // }
 
         // m1.displayBorrowed();
 
