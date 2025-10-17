@@ -2,10 +2,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class Library {
 
-    public ArrayList<Book> books = new ArrayList<Book>();
-    ArrayList<Member> members = new ArrayList<Member>();
-    ArrayList<Transaction> transactions = new ArrayList<Transaction>();
-    ArrayList<Librarian> librarians = new ArrayList<Librarian>();
+    ArrayList<Book> books = new ArrayList<>();
+    ArrayList<Member> members = new ArrayList<>();
+    ArrayList<Transaction> transactions = new ArrayList<>();
+    ArrayList<Librarian> librarians = new ArrayList<>();
 
     private int booksCount;
 
@@ -70,15 +70,44 @@ public class Library {
         return false;
     }
 
-    public boolean searchMember(String memberID) {
+    public boolean searchbyID(String id) {
         for (Member m : members) {
-            if (m.getMemberID().equals(memberID)) {
-                return true;
-            }
+            if (m.getMemberID().equals(id)) return true;
         }
         return false;
     }
+    public boolean searchMember() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Search Member By: \n1. Name \n2. Member ID: ");
+        System.out.print("Enter your Choice: ");
+        int choice = input.nextInt();
 
-    // public ArrayList getBooks() {return this.books;}
+        switch (choice) {
+            case 1: {
+                System.out.print("Enter Member Name: ");
+                String name = input.nextLine();
+                for (Member m : members) {
+                    if (m.getName().equals(name)) {
+                        m.displayDetails();
+                        return true;
+                    }
+                }
+                break;
+            }
+            case 2: {
+                System.out.println("Enter Member ID: ");
+                String mID = input.nextLine();
+                for (Member m : members) {
+                    if (m.getMemberID().equals(mID)) {
+                        m.displayDetails();
+                        return true;
+                    }
+                }
+            }
+        }
+        
+        return false;
+    }
+
 }
 

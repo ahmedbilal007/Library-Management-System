@@ -16,7 +16,13 @@ public class Main {
         Book b3 = new Book("AB984", "Html", 123925, "Ahmed", "Bilal");
 
         ahmed.add(b1, mainLibrary);
-        ahmed.addNewBook(mainLibrary);
+        ahmed.add(b2, mainLibrary);
+        // ahmed.removeBook(mainLibrary, b1.getBookID());
+        m1.borrowBook(mainLibrary, ahmed, "JAVA");
+        m1.borrowBook(mainLibrary, ahmed, "Python");
+        ahmed.removeBook(mainLibrary);
+
+        // ahmed.addNewBook(mainLibrary);
 
     
         // mainLibrary.searchBook();

@@ -3,7 +3,7 @@ public class Book {
     private String title;
     private int ISBN;
     private String publisher;
-    private boolean status;
+    private boolean isAvailable;
     private String author;
 
     public Book() {}
@@ -12,7 +12,7 @@ public class Book {
         this.title = title;
         this.ISBN = ISBN;
         this.publisher = publisher;
-        this.status = true;
+        this.isAvailable = true;
         this.author = author;
     }
 
@@ -20,37 +20,19 @@ public class Book {
         return String.format("--- BOOK DETAILS ---\nBook Title: %s\nBook ID: %s\nISBN: %d\nAuthor: %s\nPublisher: %s",
         this.getTitle(),this.getBookID(), this.getISBN(), this.getAuthor(), this.getPublisher());
     }
-    public boolean isAvailable() {
-        return this.status;
-    }
+    public boolean isBookAvailable() { return this.isAvailable;}
 
-    public void setStatus(boolean status) {
-        this.status = status;
-    }  
+    public void setStatus(boolean status) { this.isAvailable = status;}  
    
-    public String getTitle() {
-        return this.title;
-    }
+    public String getTitle() {return this.title;}
 
-    public String getBookID() {
-        return bookID;
-    }
+    public String getBookID() { return bookID;}
 
-    public int getISBN() {
-        return ISBN;
-    }
+    public int getISBN() {return ISBN;}
+    
+    public String getPublisher() {return publisher;}
 
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
+    public String getAuthor() {return author;}
     
     public static Book getBook(Library lib, String title) {
         for (Book b : lib.books) {
@@ -60,23 +42,13 @@ public class Book {
     }
 
 
-    public void setBookID(String bookID) {
-        this.bookID = bookID;
-    }
+    public void setBookID(String bookID) {this.bookID = bookID;}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    public void setTitle(String title) {this.title = title;}
 
-    public void setISBN(int iSBN) {
-        ISBN = iSBN;
-    }
+    public void setISBN(int ISBN) {this.ISBN = ISBN;}
 
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
+    public void setPublisher(String publisher) {this.publisher = publisher;}
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
+    public void setAuthor(String author) {this.author = author;}
 }

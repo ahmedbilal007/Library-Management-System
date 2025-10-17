@@ -11,17 +11,17 @@ public class Member extends User{
         super(name, address, contact, email);
         this.memberID = memberID;
         this.borrowedBooks = new Book[MAX_ALLOWED];
-        if (lib.searchMember(memberID) == false) lib.members.add(this);
+        if (lib.searchbyID(memberID) == false) lib.members.add(this);
         else System.out.println("Member Already Added");
     }
 
     public void borrowBook(Library lib, Librarian l1, String title) {
-        l1.issueBook(lib, this, title);
+        l1.issueBook(lib, this);
     }   
 
 
     public void returnBook(Library lib, Librarian l1, String title) {
-        l1.returnBook(lib, this, title);
+        l1.returnBook(lib, this);
     }
     
     public void displayBorrowed() {
