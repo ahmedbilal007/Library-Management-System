@@ -27,6 +27,8 @@ public class Librarian extends User{
         System.out.print("Enter Book Title: ");
         String title = input.nextLine();
         System.out.println();
+        System.out.println("Check whether member is in Library Membership.");
+        System.out.println();
         Member m = lib.searchMember();
 
         for (int i = 0; i < lib.books.size(); i++) {

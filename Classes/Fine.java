@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class Fine {
     String fineId;
     String memberID;
@@ -28,6 +29,13 @@ public class Fine {
         return String.format("Fine Id: %s\nMember: %s\nTransaction ID: %s\nDays Late: %d\nFine Amount: %f\nPaid: %b",this.fineId, this.memberID, this.transactionID, this.daysLate
         , this.fineAmount, this.isPaid);
     }
+
+    // public void payFine() {
+    //     Scanner input = new Scanner(System.in);
+    //     System.out.print("Enter Amount: ");
+    //     double amount = input.nextDouble();
+    //     System.out.println("Amount Paid.");
+    // }
 
 
 }
