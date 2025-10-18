@@ -15,12 +15,12 @@ public class Member extends User{
         else System.out.println("Member Already Added");
     }
 
-    public void borrowBook(Library lib, Librarian l1, String title) {
-        l1.issueBook(lib, this);
+    public void borrowBook(Library lib, Librarian l1) {
+        l1.issueBook(lib);
     }   
 
 
-    public void returnBook(Library lib, Librarian l1, String title) {
+    public void returnBook(Library lib, Librarian l1) {
         l1.returnBook(lib, this);
     }
     

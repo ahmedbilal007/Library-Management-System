@@ -17,10 +17,19 @@ public class Main {
 
         ahmed.add(b1, mainLibrary);
         ahmed.add(b2, mainLibrary);
+        ahmed.add(b3,mainLibrary);
         // ahmed.removeBook(mainLibrary, b1.getBookID());
-        m1.borrowBook(mainLibrary, ahmed, "JAVA");
-        m1.borrowBook(mainLibrary, ahmed, "Python");
-        ahmed.removeBook(mainLibrary);
+        m1.borrowBook(mainLibrary, ahmed);
+        System.out.println(m1.getBorrowedCount());
+       
+
+        m1.borrowBook(mainLibrary, ahmed);
+        System.out.println(m1.getBorrowedCount());
+
+        // ahmed.removeBook(mainLibrary);
+        ahmed.returnBook(mainLibrary,m1);
+        System.out.println(m1.getBorrowedCount());
+        
 
         // ahmed.addNewBook(mainLibrary);
 

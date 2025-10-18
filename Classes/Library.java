@@ -76,20 +76,23 @@ public class Library {
         }
         return false;
     }
-    public boolean searchMember() {
+    public Member searchMember() {
         Scanner input = new Scanner(System.in);
         System.out.println("Search Member By: \n1. Name \n2. Member ID: ");
+        System.out.println();
         System.out.print("Enter your Choice: ");
         int choice = input.nextInt();
-
+        input.nextLine();
+        System.out.println();
         switch (choice) {
             case 1: {
                 System.out.print("Enter Member Name: ");
                 String name = input.nextLine();
+                System.out.println();
                 for (Member m : members) {
                     if (m.getName().equals(name)) {
                         m.displayDetails();
-                        return true;
+                        return m;
                     }
                 }
                 break;
@@ -97,17 +100,122 @@ public class Library {
             case 2: {
                 System.out.println("Enter Member ID: ");
                 String mID = input.nextLine();
+                System.out.println();
                 for (Member m : members) {
                     if (m.getMemberID().equals(mID)) {
                         m.displayDetails();
-                        return true;
+                        return m;
                     }
                 }
             }
         }
-        
-        return false;
+        return null;
     }
 
+
+    public boolean addBook() {
+        Scanner input = new Scanner(System.in);
+        Book newBook = new Book();
+        System.out.print("Enter Book ID: ");
+        String ID = input.nextLine();
+        System.out.println();
+        for (int i = 0; i<books.size(); i++) {
+            if (books.get(i).getBookID().equals(ID)) 
+                { 
+                    System.out.println("A book is already available with this ID.");
+                    System.out.print("Enter a different ID: ");
+                    String id = input.nextLine();
+                    System.out.println();
+                    newBook.setBookID(id);
+                }
+            else if (i == books.size()) newBook.setBookID(ID); 
+        }
+
+        System.out.print("Enter Book Title: ");
+        String title = input.nextLine();
+        System.out.println();
+        for (int i = 0; i<books.size(); i++) {
+            if (books.get(i).getTitle().equals(title)) 
+            {
+                System.out.println("A book is already available with this Title.");
+                System.out.print("Enter a different Title: ");
+                String titl = input.nextLine();
+                System.out.println();
+                newBook.setTitle(titl);
+            }
+            else if (i == books.size()) newBook.setTitle(title); 
+        }
+        
+        System.out.print("Enter Book ISBN: ");
+        int ISBN = input.nextInt();
+        System.out.println();
+        for (int i = 0; i<books.size(); i++) {
+            if (books.get(i).getISBN() == ISBN) 
+            {
+                System.out.println("A book is already available with this ISBN.");
+                System.out.print("Enter a different ISBN: ");
+                int is = input.nextInt();
+                System.out.println();
+                newBook.setISBN(is);
+
+            }
+            else if (i == books.size()) newBook.setISBN(ISBN); 
+        }
+        input.nextLine();
+        System.out.print("Enter Publisher Name: ");
+        String publisher = input.nextLine();
+        System.out.println();
+        newBook.setPublisher(publisher);
+        System.out.print("Enter Author Name: ");
+        String author = input.nextLine();
+        System.out.println();
+        newBook.setAuthor(author);
+        books.add(newBook);
+        incBookCount();
+        System.out.println("------------------- BOOK ADDED SUCCESSFULLY ------------------");
+        System.out.println();
+        return true;
+    }
+
+
+    public void removeBook() {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter Book ID: ");
+        String bookID = input.nextLine();
+        System.out.println();
+        for (int i = 0; i<books.size(); i++) {
+            if (books.get(i).getBookID().equals(bookID)){
+                if (books.get(i).isBookAvailable() == true)
+                {
+                    System.out.println("Permanently remove the Book(y/n)? : ");
+                    String choice = input.nextLine();
+                    System.out.println();
+                    if (choice == "y") {
+                    books.remove(books.get(i));
+                    decBookCount();
+                    System.out.println("Removed Successfully.");
+                    System.out.println();
+                    } else {
+                        System.out.println("Book not removed.");
+                        System.out.println();
+                    }
+                } else System.out.println("This book is borrowed by someone.\n");
+            } else if (i == books.size()) {
+                System.out.println("Book not Found.\n");
+            }
+        }
+    }
+
+    public void showAllBooks() {
+        for (Book b : books)  {
+            System.out.println(b.getDetails());
+        }
+    }
+
+    public void showAllMembers() {
+        for (Member m : members) {
+            System.out.println(m.displayDetails());
+        }
+    }
 }
 

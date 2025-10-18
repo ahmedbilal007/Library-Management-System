@@ -3,7 +3,7 @@ import java.time.*;
 public class Transaction {
     private String transactionID;
     private String memberID;
-    private int isbn;
+    private String bookId;
     private boolean isReturned;
     private double fineAmount;
     private static int count = 1;
@@ -13,17 +13,17 @@ public class Transaction {
     Fine fine;
 
 
-    public Transaction(String memberID, int isbn, boolean isReturned) {
+    public Transaction(String memberID, String bookId, boolean isReturned) {
         this.transactionID = "CTS-LHR-" + String.format("%03d", count++);
         this.memberID = memberID;
-        this.isbn = isbn; 
+        this.bookId = bookId; 
         this.isReturned = isReturned;
         issueDate = LocalDate.now();
         dueDate = issueDate.plusDays(15);
 
         Period p = Period.between(dueDate, LocalDate.now());
-        int days = (p.getYears()*365) + (p.getMonths()*30) + (p.getDays());
-        if (days > 0) fine = new Fine(days);
+        int days = p.getDays();
+        if (days > 0) fine = new Fine(memberID, days, this.transactionID);
         else fine = null;
     } 
 
@@ -31,7 +31,7 @@ public class Transaction {
         System.out.println();
         System.out.println("Transaction ID: " + this.transactionID);
         System.out.println("Member ID: " + this.memberID);
-        System.out.println("ISBN Number: " + this.isbn);
+        System.out.println("Book ID: " + this.bookId);
         System.out.println("Status: " + isReturned);
         System.out.println("Issuing Date: " + this.issueDate);
         System.out.println("Due Date: " + this.dueDate);
@@ -41,11 +41,11 @@ public class Transaction {
     }
 
     public void setMemberId(String id) {this.memberID = id;}
-    public void setISBN(int isbn) {this.isbn = isbn;}
+    public void setISBN(String id) {this.bookId = id;}
     public void setStatusOfTransaction(boolean status) {this.isReturned = status;}
 
     public String getMemberID() {return this.memberID;}
-    public int getisbn() {return this.isbn;}
+    public String getBookid() {return this.bookId;}
     public boolean getStatus() {return this.isReturned;}
     
 }
