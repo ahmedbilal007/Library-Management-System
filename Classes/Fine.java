@@ -5,7 +5,7 @@ public class Fine {
     String transactionID;
     int daysLate;
     double fineAmount;
-    double finePerDay;
+    double finePerDay = 50;
     boolean isPaid;
     private int count = 1;
 
@@ -17,8 +17,9 @@ public class Fine {
         isPaid = false;
         this.transactionID = transactionId;
     }
+    
     public double calculateFine() {
-        return daysLate*finePerDay;
+        return this.daysLate * this.finePerDay;
     }
 
     public void markPaid() {
@@ -27,7 +28,7 @@ public class Fine {
 
     public String displayFineDetails() {
         return String.format("Fine Id: %s\nMember: %s\nTransaction ID: %s\nDays Late: %d\nFine Amount: %f\nPaid: %b",this.fineId, this.memberID, this.transactionID, this.daysLate
-        , this.fineAmount, this.isPaid);
+        , this.calculateFine(), this.isPaid);
     }
 
     // public void payFine() {

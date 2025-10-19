@@ -10,6 +10,22 @@ public class Librarian extends User{
         this.librarianID = librarianID;
     }
  
+    public boolean login(){
+        System.out.println("ENTER USERNAME AND ID.\n");
+        System.out.print("Enter Username: ");
+        String username = input.nextLine();
+        System.out.print("Enter ID: ");
+        String id = input.nextLine();
+
+        if (username.equals(this.getName()) && id.equals(this.getLibrarianID())) {
+            System.out.println("Logged In Successfully.");
+            return true;
+        } else {
+            System.out.println("Invalid Username Or ID.");
+        }
+        return false;
+    }
+
     public void addNewBook(Library lib) {
         lib.addBook();
     }
@@ -40,7 +56,7 @@ public class Librarian extends User{
             if (m.getBorrowedCount() < m.getMaxAllowed()) {
                 m.getBorrowedBooks()[m.getBorrowedCount()] = lib.books.get(i);
                 m.incBorrowedCount();
-                Transaction t = new Transaction(m.getMemberID(), lib.books.get(i).getBookID(), false);
+                Transaction t = new Transaction(m.getMemberID(), lib.books.get(i).getBookID(), false, lib);
                 lib.transactions.add(t);
                 lib.books.get(i).setStatus(false);
                 m.getBorrowingHistory().add(t);
@@ -80,6 +96,7 @@ public class Librarian extends User{
             }
         }
     }
+    
 
     public void viewIssued(Library lib) {
         for (Book b : lib.books) {

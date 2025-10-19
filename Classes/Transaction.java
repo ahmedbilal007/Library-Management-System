@@ -13,18 +13,22 @@ public class Transaction {
     Fine fine;
 
 
-    public Transaction(String memberID, String bookId, boolean isReturned) {
+    public Transaction(String memberID, String bookId, boolean isReturned, Library l1) {
         this.transactionID = "CTS-LHR-" + String.format("%03d", count++);
         this.memberID = memberID;
         this.bookId = bookId; 
         this.isReturned = isReturned;
+
         issueDate = LocalDate.now();
         dueDate = issueDate.plusDays(15);
 
+
         Period p = Period.between(dueDate, LocalDate.now());
         int days = p.getDays();
-        if (days > 0) fine = new Fine(memberID, days, this.transactionID);
-        else fine = null;
+        if (days > 0) { 
+            fine = new Fine(memberID, days, this.transactionID);
+            l1.fines.add(fine);
+        } else fine = null;
     } 
 
     public void displayInfo() {
@@ -36,7 +40,7 @@ public class Transaction {
         System.out.println("Issuing Date: " + this.issueDate);
         System.out.println("Due Date: " + this.dueDate);
         System.out.println("Date of Returning: " + this.returnedDate);
-        if (fine != null) System.out.println("Fine Amount: " + fine.calculateFine());
+        if (fine != null) System.out.println("Fine Amount: " + this.fine.calculateFine());
         System.out.println();
     }
 

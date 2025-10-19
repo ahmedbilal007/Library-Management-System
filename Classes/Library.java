@@ -5,6 +5,8 @@ public class Library {
     ArrayList<Book> books = new ArrayList<>();
     ArrayList<Member> members = new ArrayList<>();
     ArrayList<Transaction> transactions = new ArrayList<>();
+    ArrayList<Fine> fines = new ArrayList<>();
+
     Librarian librarian = null;
 
     private int booksCount;
@@ -52,7 +54,7 @@ public class Library {
                     System.out.println("Book Found.");
                     System.out.println(b.getDetails());
                     return true;
-                } 
+                } else {System.out.println("Book Not Found.");}
                 }
                 break;
             }
@@ -64,7 +66,7 @@ public class Library {
                         System.out.println("Book Found.");
                         System.out.println(b.getDetails());
                         return true;
-                    }
+                    } else {System.out.println("Book Not Found.");}
                 }
                 break;
             }
@@ -77,7 +79,7 @@ public class Library {
                         System.out.println("Book Found.");
                         b.getDetails();
                         return true;
-                    }
+                    } else {System.out.println("Book Not Found.");}
             }
             break;
             }
@@ -256,6 +258,18 @@ public class Library {
             int contact = input.nextInt();
             this.librarian = new Librarian(name, address, contact, email, id);
             System.out.println("Librarian Added Successfully.");
+        }
+    }
+
+    public void displayTransactions() {
+        for (Transaction t : transactions) {
+            t.displayInfo();
+        }
+    }
+
+    public void displayFines() {
+        for (Fine f : fines) {
+            System.out.println(f.displayFineDetails());
         }
     }
 }
