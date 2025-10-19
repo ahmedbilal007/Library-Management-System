@@ -5,7 +5,7 @@ public class Library {
     ArrayList<Book> books = new ArrayList<>();
     ArrayList<Member> members = new ArrayList<>();
     ArrayList<Transaction> transactions = new ArrayList<>();
-    ArrayList<Librarian> librarians = new ArrayList<>();
+    Librarian librarian = null;
 
     private int booksCount;
 
@@ -15,6 +15,25 @@ public class Library {
 
     public void decBookCount() {
         this.booksCount--;
+    }
+
+    public boolean adminLogin(){
+        Scanner admin = new Scanner(System.in);
+        String adminUName = "@ahmed";
+        int admPass = 1234;
+        System.out.println("ADMIN LOGIN PAGE");
+        System.out.print("Enter Admin UserName: ");
+        String uName = admin.next();
+        System.out.print("Enter Admin PIN: ");
+        int pin = admin.nextInt();
+
+        if (!uName.equals(adminUName) || (pin != admPass)) {
+            System.out.println("INVALID USERNAME OR PASSWORD. TRY AGAIN.");
+            return false;
+        } else {
+            System.out.println("Logged In Successfully.");
+        }
+        return true;
     }
     
     public boolean searchBook() {
@@ -215,6 +234,28 @@ public class Library {
     public void showAllMembers() {
         for (Member m : members) {
             System.out.println(m.displayDetails());
+        }
+    }
+
+
+    public void addLibrarian() {
+        Scanner input = new Scanner(System.in);
+        if (this.librarian != null) {
+            System.out.println("A librarian is already available for this library. Can't add another librarian.");
+        } else {
+            // tring name, String address, int contact, String email, String librarianID
+            System.out.print("Enter Librarian Name: ");
+            String name = input.nextLine();
+            System.out.print("Enter Librarian Address: ");
+            String address = input.nextLine();
+            System.out.print("Enter Email: ");
+            String email = input.nextLine();
+            System.out.print("Enter Libarian ID: ");
+            String id = input.nextLine();
+            System.out.print("Enter Contact: ");
+            int contact = input.nextInt();
+            this.librarian = new Librarian(name, address, contact, email, id);
+            System.out.println("Librarian Added Successfully.");
         }
     }
 }

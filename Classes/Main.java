@@ -1,60 +1,47 @@
 import java.util.Scanner;
+
 public class Main {
-    public static void main(String[] args) {
+
+    public static void mainFlow(Library lib) {
+
         Scanner input = new Scanner(System.in);
-        Library mainLibrary = new Library();
-        Librarian ahmed = new Librarian("Ahmed", "Khushab", 12345, "ahmedbilal2857@gmail.com", "AB12345");
-        Librarian bilal = new Librarian("Bilal", "Khushab", 98765, "abilal3326@gmail.com", "AB08765");
 
-        Member m1 = new Member("Ahmed", "Khushab", 123, "ahmedbilal@gmail.com", "AB1234", mainLibrary);
-        mainLibrary.librarians.add(ahmed);
-        mainLibrary.librarians.add(bilal);
-
-
-        Book b1 = new Book("AB234", "JAVA", 12345, "Ahmed", "Bilal");
-        Book b2 = new Book("AB257", "Python", 12235, "Ahmed", "Bilal");
-        Book b3 = new Book("AB984", "Html", 123925, "Ahmed", "Bilal");
-
-        ahmed.add(b1, mainLibrary);
-        ahmed.add(b2, mainLibrary);
-        ahmed.add(b3,mainLibrary);
-        // ahmed.removeBook(mainLibrary, b1.getBookID());
-        m1.borrowBook(mainLibrary, ahmed);
-        // System.out.println(m1.getBorrowedCount());
-       
-
-        // m1.borrowBook(mainLibrary, ahmed);
-        // System.out.println(m1.getBorrowedCount());
-
-        // ahmed.removeBook(mainLibrary);
-        ahmed.returnBook(mainLibrary,m1);
-        // System.out.println(m1.getBorrowedCount());
-        m1.displayBorrowed();
-        m1.viewHistory();
+        System.out.println("LIBRARY MANAGEMENT SYSTEM");
+        System.out.println("-------------------------\n\n\n\n\n\n\n\n");
+        System.out.println("1. Administration Use");
+        System.out.println("2. Login");
+        System.out.println("3. Exit");
+        while (true) { 
+            System.out.print("Enter your choice: ");
+            int choice = input.nextInt();
+            switch (choice) {
+        // if (choice == 1)  {
+            case 1: {
+            boolean login = lib.adminLogin();
+            if (login == true) {
+                System.out.println("FOLLOWING FUNCTIONATLITIES ARE AVAILABLE AS AN ADMIN.\n");
+                System.out.println("1. Search Book\n2. Search Member\n3. Show All Books\n4. Show All Members\n5. Add Librarian\n6. Log Out");
+                while (true) {
+                    System.out.print("Enter your choice: ");
+                    int admChoice = input.nextInt();
+                }
+            }
+        }
+            case 2: break;
+        // }  else if (choice == 3) {
+            
+        }
         
-
-        // ahmed.addNewBook(mainLibrary);
-
+        }
+    }
     
-        // mainLibrary.searchBook();
-
-        // ahmed.issueBook(mainLibrary, m1, "JAVA");
-        // ahmed.issueBook(mainLibrary, m1, "Python");
-        // ahmed.issueBook(mainLibrary, m1, "Python");
-        // ahmed.issueBook(mainLibrary, m1, "Html");
-        // ahmed.issueBook(mainLibrary, m1, "Css");
 
 
-        // for (Transaction t : mainLibrary.transactions) {
-        //     t.displayInfo();
-        // }
+    public static void main(String[] args) {
+        
+        Library mainLibrary = new Library();
+        mainFlow(mainLibrary);
 
-        // ahmed.returnBook(mainLibrary, m1, "JAVA");
-        // for (Transaction t : mainLibrary.transactions) {
-        //     t.displayInfo();
-        // }
-
-        // m1.displayBorrowed();
 
     }
     
