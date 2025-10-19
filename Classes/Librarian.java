@@ -1,9 +1,11 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Librarian extends User{ 
     Scanner input = new Scanner(System.in);
     private String librarianID;
+    private Librarian supervisor;
 
     public Librarian(String name, String address, int contact, String email, String librarianID) {
         super(name, address, contact, email);
@@ -26,6 +28,9 @@ public class Librarian extends User{
         return false;
     }
 
+    public void setSupervisor(Librarian supervisor) {
+        this.supervisor = supervisor;
+    }
     public void addNewBook(Library lib) {
         lib.addBook();
     }

@@ -45,7 +45,7 @@ public class Transaction {
     }
 
     public void setMemberId(String id) {this.memberID = id;}
-    public void setISBN(String id) {this.bookId = id;}
+    public void setbookID(String id) {this.bookId = id;}
     public void setStatusOfTransaction(boolean status) {this.isReturned = status;}
 
     public String getMemberID() {return this.memberID;}

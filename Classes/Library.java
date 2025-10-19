@@ -6,6 +6,7 @@ public class Library {
     ArrayList<Member> members = new ArrayList<>();
     ArrayList<Transaction> transactions = new ArrayList<>();
     ArrayList<Fine> fines = new ArrayList<>();
+    Librarian supervisor = new Librarian("Ahmed", "Lahore", 12345, "bilal235@gmail.com", "SP23456");
 
     Librarian librarian = null;
 
@@ -257,7 +258,15 @@ public class Library {
             System.out.print("Enter Contact: ");
             int contact = input.nextInt();
             this.librarian = new Librarian(name, address, contact, email, id);
+            this.assignSupervisor(librarian);
             System.out.println("Librarian Added Successfully.");
+        }
+    }
+
+
+    public void assignSupervisor(Librarian llLibrarian) {
+        if (supervisor != null) {
+            librarian.setSupervisor(supervisor);
         }
     }
 
