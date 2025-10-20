@@ -2,13 +2,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class Library {
 
-    ArrayList<Book> books = new ArrayList<>();
-    ArrayList<Member> members = new ArrayList<>();
-    ArrayList<Transaction> transactions = new ArrayList<>();
-    ArrayList<Fine> fines = new ArrayList<>();
-    Librarian supervisor = new Librarian("Ahmed", "Lahore", 12345, "bilal235@gmail.com", "SP23456");
+    private ArrayList<Book> books = new ArrayList<>();
+    private ArrayList<Member> members = new ArrayList<>();
+    private ArrayList<Transaction> transactions = new ArrayList<>();
+    private Librarian supervisor = new Librarian("Ahmed", "Lahore", 12345, "bilal235@gmail.com", "SP23456");
 
-    Librarian librarian = null;
+    private Librarian librarian = null;
 
     private int booksCount;
 
@@ -276,10 +275,38 @@ public class Library {
         }
     }
 
-    public void displayFines() {
-        for (Fine f : fines) {
-            System.out.println(f.displayFineDetails());
+    public void displayFineHistory() {
+        for (Transaction t : transactions) {
+            if (t.fine != null) {
+                System.out.println(t.fine.displayFineDetails());
+            }
         }
     }
+
+    public ArrayList<Book> getBooks() {
+        return books;
+    }
+
+    public ArrayList<Member> getMembers() {
+        return members;
+    }
+
+    public ArrayList<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public Librarian getSupervisor() {
+        return supervisor;
+    }
+
+    public Librarian getLibrarian() {
+        return librarian;
+    }
+
+    public int getBooksCount() {
+        return booksCount;
+    }
+
+
 }
 

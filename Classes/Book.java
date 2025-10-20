@@ -35,7 +35,7 @@ public class Book {
     public String getAuthor() {return author;}
     
     public static Book getBook(Library lib, String title) {
-        for (Book b : lib.books) {
+        for (Book b : lib.getBooks()) {
             if (b.getTitle().equals(title)) return b;
         }
         return null;

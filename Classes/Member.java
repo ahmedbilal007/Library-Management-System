@@ -1,9 +1,6 @@
-import java.util.ArrayList;
-
 public class Member extends User{
     private String memberID;
     private Book[] borrowedBooks;
-    private ArrayList<Transaction> borrowingHistory = new ArrayList<Transaction> ();
     private final int MAX_ALLOWED = 3;
     private int borrowedCount;
 
@@ -11,7 +8,7 @@ public class Member extends User{
         super(name, address, contact, email);
         this.memberID = memberID;
         this.borrowedBooks = new Book[MAX_ALLOWED];
-        if (lib.searchbyID(memberID) == false) lib.members.add(this);
+        if (lib.searchbyID(memberID) == false) lib.getMembers().add(this);
         else System.out.println("Member Already Added");
     }
 
@@ -30,9 +27,11 @@ public class Member extends User{
         }
     }
 
-    public void viewHistory() {
-        for (Transaction t : borrowingHistory) {
-            t.displayInfo();
+    public void viewHistory(Library lib) {
+        for (Transaction t : lib.getTransactions()) {
+            if (t.getMemberID().equals(this.memberID)) {
+                t.displayInfo();
+            }
         }
     }
     
@@ -58,10 +57,6 @@ public class Member extends User{
 
     public void decBorrowedCount() {
         this.borrowedCount--;
-    }
-
-    public ArrayList<Transaction> getBorrowingHistory() {
-        return borrowingHistory;
     }
 
     public int getMaxAllowed() {

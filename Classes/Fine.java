@@ -1,12 +1,12 @@
 import java.util.Scanner;
 public class Fine {
-    String fineId;
-    String memberID;
-    String transactionID;
-    int daysLate;
-    double fineAmount;
-    double finePerDay = 50;
-    boolean isPaid;
+    private String fineId;
+    private String memberID;
+    private String transactionID;
+    private int daysLate;
+    private double fineAmount;
+    private double finePerDay = 50;
+    private boolean isPaid;
     private int count = 1;
 
     public Fine(String m,int daysLate, String transactionId) {
@@ -31,12 +31,74 @@ public class Fine {
         , this.calculateFine(), this.isPaid);
     }
 
-    // public void payFine() {
-    //     Scanner input = new Scanner(System.in);
-    //     System.out.print("Enter Amount: ");
-    //     double amount = input.nextDouble();
-    //     System.out.println("Amount Paid.");
+    // public void payFine(Member m, Library lib) {
+    //     System.out.println(this.calculateFine() + " amount is due by this member.");
     // }
+
+    public String getFineId() {
+        return fineId;
+    }
+
+    public void setFineId(String fineId) {
+        this.fineId = fineId;
+    }
+
+    public String getMemberID() {
+        return memberID;
+    }
+
+    public void setMemberID(String memberID) {
+        this.memberID = memberID;
+    }
+
+    public String getTransactionID() {
+        return transactionID;
+    }
+
+    public void setTransactionID(String transactionID) {
+        this.transactionID = transactionID;
+    }
+
+    public int getDaysLate() {
+        return daysLate;
+    }
+
+    public void setDaysLate(int daysLate) {
+        this.daysLate = daysLate;
+    }
+
+    public double getFineAmount() {
+        return fineAmount;
+    }
+
+    public void setFineAmount(double fineAmount) {
+        this.fineAmount = fineAmount;
+    }
+
+    public double getFinePerDay() {
+        return finePerDay;
+    }
+
+    public void setFinePerDay(double finePerDay) {
+        this.finePerDay = finePerDay;
+    }
+
+    public boolean isIsPaid() {
+        return isPaid;
+    }
+
+    public void setIsPaid(boolean isPaid) {
+        this.isPaid = isPaid;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
 
 
 }

@@ -27,7 +27,6 @@ public class Transaction {
         int days = p.getDays();
         if (days > 0) { 
             fine = new Fine(memberID, days, this.transactionID);
-            l1.fines.add(fine);
         } else fine = null;
     } 
 
