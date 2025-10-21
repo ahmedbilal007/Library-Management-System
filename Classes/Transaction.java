@@ -1,4 +1,7 @@
+import java.text.DateFormat;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
+
 
 public class Transaction {
     private String transactionID;
@@ -30,17 +33,17 @@ public class Transaction {
         } else fine = null;
     } 
 
-    public void displayInfo() {
-        System.out.println();
-        System.out.println("Transaction ID: " + this.transactionID);
-        System.out.println("Member ID: " + this.memberID);
-        System.out.println("Book ID: " + this.bookId);
-        System.out.println("Status: " + isReturned);
-        System.out.println("Issuing Date: " + this.issueDate);
-        System.out.println("Due Date: " + this.dueDate);
-        System.out.println("Date of Returning: " + this.returnedDate);
-        if (fine != null) System.out.println("Fine Amount: " + this.fine.calculateFine());
-        System.out.println();
+    @Override
+    public String toString() {
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String issued = (this.issueDate != null) ? issueDate.format(fmt) : "N/A";
+        String due = (this.dueDate != null) ? dueDate.format(fmt) : "N/A";
+        String returned =  (this.returnedDate != null) ? this.returnedDate.format(fmt) : "Not Returned";
+        String fineA = (fine != null) ? String.format("%.2f", this.fine.calculateFine()) : "No Fine";
+
+        return String.format("\n--- Transaction Details ---\nTransaction ID: %s\nMember ID: %s\nBook ID: %s\nStatus: %b\nIssuing Date: %s\nDue Date: %s\nReturn Date: %s\nFine Amount: %s", 
+        this.transactionID, this.memberID, this.bookId, this.isReturned, issued, due, returned, fineA);
+
     }
 
     public void setMemberId(String id) {this.memberID = id;}

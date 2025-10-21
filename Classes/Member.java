@@ -30,13 +30,14 @@ public class Member extends User{
     public void viewHistory(Library lib) {
         for (Transaction t : lib.getTransactions()) {
             if (t.getMemberID().equals(this.memberID)) {
-                t.displayInfo();
+                System.out.println(t.toString());
             }
         }
     }
     
-    public String displayDetails() {
-        return String.format("--- Member Details ---\nName: %s\nID: %s\n", this.getName(), this.getMemberID());
+    @Override
+    public String toString() {
+        return String.format("--- Member Details ---\n%s\nMember ID: %s", super.toString(), this.getMemberID());
     }
 
     public String getMemberID() {

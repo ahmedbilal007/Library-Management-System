@@ -71,33 +71,44 @@ public class Main {
     public static void main(String[] args) {
         
         Library mainLibrary = new Library();
-        mainFlow(mainLibrary);
+        // mainFlow(mainLibrary);
 
         Member m1 = new Member("Ahmed", "Lahore", 123456, "ahmedbilal2857@gmail.com", "AB234", mainLibrary);
-
+        System.out.println(m1.toString());
         Librarian l1 = new Librarian("Muhammad", "Pindi", 65432, "bilal@gmail.com", "LI2345");
+        System.out.println(l1.toString());
+      
 
         Book b1 = new Book("B123", "Python", 1234, "Talha", "Ahmed");
         Book b2 = new Book("B456", "Java", 765, "Talha", "Ahmed");
         Book b3 = new Book("B789", "JavaScript", 9873, "Talha", "Ahmed");
 
-        // mainLibrary.books.add(b1);
-        // mainLibrary.books.add(b2);
+        mainLibrary.getBooks().add(b1);
+        mainLibrary.getBooks().add(b2);
         // mainLibrary.books.add(b3);
 
         // mainLibrary.members.add(m1);
 
-        // m1.borrowBook(mainLibrary, l1);
-        // // m1.borrowBook(mainLibrary, l1);
+        m1.borrowBook(mainLibrary, l1);
+        m1.borrowBook(mainLibrary, l1);
+
         // // m1.borrowBook(mainLibrary, l1);
 
-        // l1.viewIssued(mainLibrary);
+        l1.viewIssued(mainLibrary);
+
+        
+
+        mainLibrary.displayTransactions();
 
         // m1.returnBook(mainLibrary, l1);
 
-        // mainLibrary.displayTransactions();
+
+        mainLibrary.displayTransactions();
+
+
         // mainLibrary.displayFines();
         // System.out.println("End");
+
     }
     
 }

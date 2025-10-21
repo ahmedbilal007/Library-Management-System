@@ -44,6 +44,7 @@ public class Librarian extends User{
         lib.removeBook();
     }
 
+
     public void issueBook(Library lib) {
         System.out.print("Enter Book Title: ");
         String title = input.nextLine();
@@ -90,18 +91,21 @@ public class Librarian extends User{
             for (Transaction t : lib.getTransactions()) {
                 if (t.getBookid().equals(b.getBookID())) {
                     t.setStatusOfTransaction(true);
+                    t.returnedDate = LocalDate.now();
                 }
             }
         }
     }
     
 
-    public void viewIssued(Library lib) {
+    public String viewIssued(Library lib) {
         for (Book b : lib.getBooks()) {
             if (b.isBookAvailable() == false) {
-                System.out.println(b.getDetails());
+                // System.out.println(b.getDetails());
+                return b.getDetails();
             } 
         }
+        return "No Book Issued";
     }
 
     public void addNewMember(Library lib) {
@@ -188,6 +192,11 @@ public class Librarian extends User{
 
     public String getLibrarianID() {
         return librarianID;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("--- Librarian Details ---\n%s\nLibrarian ID: %s",super.toString(), this.getLibrarianID());
     }
 }
 

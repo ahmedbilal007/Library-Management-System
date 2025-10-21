@@ -52,7 +52,7 @@ public class Library {
                 for (Book b : books) {
                     if (b.getTitle().equals(title)) {
                     System.out.println("Book Found.");
-                    System.out.println(b.getDetails());
+                    // System.out.println(b.getDetails());
                     return true;
                 } else {System.out.println("Book Not Found.");}
                 }
@@ -64,7 +64,7 @@ public class Library {
                 for (Book b : books) {
                     if (b.getBookID().equals(id)) {
                         System.out.println("Book Found.");
-                        System.out.println(b.getDetails());
+                        // System.out.println(b.getDetails());
                         return true;
                     } else {System.out.println("Book Not Found.");}
                 }
@@ -77,7 +77,7 @@ public class Library {
                 for (Book b : books) {
                     if (b.getISBN() == isbn) {
                         System.out.println("Book Found.");
-                        b.getDetails();
+                        // b.getDetails();
                         return true;
                     } else {System.out.println("Book Not Found.");}
             }
@@ -112,7 +112,7 @@ public class Library {
                 System.out.println();
                 for (Member m : members) {
                     if (m.getName().equals(name)) {
-                        m.displayDetails();
+                        // System.out.println(m.toString());
                         return m;
                     }
                 }
@@ -124,7 +124,7 @@ public class Library {
                 System.out.println();
                 for (Member m : members) {
                     if (m.getMemberID().equals(mID)) {
-                        m.displayDetails();
+                        // System.out.println(m.toString());
                         return m;
                     }
                 }
@@ -235,7 +235,7 @@ public class Library {
 
     public void showAllMembers() {
         for (Member m : members) {
-            System.out.println(m.displayDetails());
+            System.out.println(m.toString());
         }
     }
 
@@ -245,7 +245,6 @@ public class Library {
         if (this.librarian != null) {
             System.out.println("A librarian is already available for this library. Can't add another librarian.");
         } else {
-            // tring name, String address, int contact, String email, String librarianID
             System.out.print("Enter Librarian Name: ");
             String name = input.nextLine();
             System.out.print("Enter Librarian Address: ");
@@ -271,7 +270,7 @@ public class Library {
 
     public void displayTransactions() {
         for (Transaction t : transactions) {
-            t.displayInfo();
+            System.out.println(t.toString());
         }
     }
 
@@ -306,7 +305,5 @@ public class Library {
     public int getBooksCount() {
         return booksCount;
     }
-
-
 }
 

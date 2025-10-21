@@ -50,4 +50,8 @@ public abstract class User {
         return email.endsWith("@gmail.com");
     }
 
-}
+    @Override
+    public String toString() {
+        return String.format("Name: %s\nAddress: %s\nEmail: %s\nContact: %d", this.getName(), this.getAddress(), this.getEmail(), this.getContact());
+    }
+ }
