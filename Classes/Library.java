@@ -8,7 +8,6 @@ public class Library {
     private Librarian supervisor = new Librarian("Ahmed", "Lahore", 12345, "bilal235@gmail.com", "SP23456");
 
     private Librarian librarian = null;
-
     private int booksCount;
 
     public void incBookCount() {
@@ -52,7 +51,6 @@ public class Library {
                 for (Book b : books) {
                     if (b.getTitle().equals(title)) {
                     System.out.println("Book Found.");
-                    // System.out.println(b.getDetails());
                     return true;
                 } else {System.out.println("Book Not Found.");}
                 }
@@ -64,7 +62,6 @@ public class Library {
                 for (Book b : books) {
                     if (b.getBookID().equals(id)) {
                         System.out.println("Book Found.");
-                        // System.out.println(b.getDetails());
                         return true;
                     } else {System.out.println("Book Not Found.");}
                 }
@@ -77,7 +74,6 @@ public class Library {
                 for (Book b : books) {
                     if (b.getISBN() == isbn) {
                         System.out.println("Book Found.");
-                        // b.getDetails();
                         return true;
                     } else {System.out.println("Book Not Found.");}
             }
@@ -97,6 +93,7 @@ public class Library {
         }
         return false;
     }
+
     public Member searchMember() {
         Scanner input = new Scanner(System.in);
         System.out.println("Search Member By: \n1. Name \n2. Member ID: ");
@@ -112,7 +109,6 @@ public class Library {
                 System.out.println();
                 for (Member m : members) {
                     if (m.getName().equals(name)) {
-                        // System.out.println(m.toString());
                         return m;
                     }
                 }
@@ -124,7 +120,6 @@ public class Library {
                 System.out.println();
                 for (Member m : members) {
                     if (m.getMemberID().equals(mID)) {
-                        // System.out.println(m.toString());
                         return m;
                     }
                 }
@@ -229,7 +224,7 @@ public class Library {
 
     public void showAllBooks() {
         for (Book b : books)  {
-            System.out.println(b.getDetails());
+            System.out.println(b.toString());
         }
     }
 
@@ -276,8 +271,8 @@ public class Library {
 
     public void displayFineHistory() {
         for (Transaction t : transactions) {
-            if (t.fine != null) {
-                System.out.println(t.fine.displayFineDetails());
+            if (t.getFine() != null) {
+                System.out.println(t.getFine().toString());
             }
         }
     }
@@ -304,6 +299,13 @@ public class Library {
 
     public int getBooksCount() {
         return booksCount;
+    }
+
+    public boolean duplicateEmail(String email) {
+        for (Member m : members) {
+            if (m.getEmail().equals(email)) return true;
+        }
+        return false;
     }
 }
 

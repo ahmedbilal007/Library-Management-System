@@ -16,7 +16,7 @@ public class Book {
         this.author = author;
     }
 
-    public String getDetails() {
+    public String toString() {
         return String.format("--- BOOK DETAILS ---\nBook Title: %s\nBook ID: %s\nISBN: %d\nAuthor: %s\nPublisher: %s",
         this.getTitle(),this.getBookID(), this.getISBN(), this.getAuthor(), this.getPublisher());
     }

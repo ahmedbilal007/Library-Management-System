@@ -10,10 +10,10 @@ public class Transaction {
     private boolean isReturned;
     private double fineAmount;
     private static int count = 1;
-    LocalDate issueDate;
-    LocalDate dueDate;
-    LocalDate returnedDate;
-    Fine fine;
+    private LocalDate issueDate;
+    private LocalDate dueDate;
+    private LocalDate returnedDate;
+    private Fine fine;
 
 
     public Transaction(String memberID, String bookId, boolean isReturned, Library l1) {
@@ -50,6 +50,13 @@ public class Transaction {
     public void setbookID(String id) {this.bookId = id;}
     public void setStatusOfTransaction(boolean status) {this.isReturned = status;}
 
+    public void setReturned()  {
+        this.returnedDate = LocalDate.now();
+    }
+
+    public Fine getFine() {
+        return this.fine;
+    }
     public String getMemberID() {return this.memberID;}
     public String getBookid() {return this.bookId;}
     public boolean getStatus() {return this.isReturned;}

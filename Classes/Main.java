@@ -6,20 +6,21 @@ public class Main {
 
         Scanner input = new Scanner(System.in);
 
-        System.out.println("-------------------------\n\n\n\n");
+        System.out.println("-------------------------\n\n");
         System.out.println("LIBRARY MANAGEMENT SYSTEM");
-        System.out.println("\n\n\n\n-------------------------");
-        System.out.println("1. Administration Use");
-        System.out.println("2. Login");
-        System.out.println("3. Exit");
+        System.out.println("\n\n-------------------------");
+        System.out.println("\t1. Administration Use");
+        System.out.println("\t2. Login");
+        System.out.println("\t3. Exit");
         
         while (true) { 
             System.out.print("\nENTER YOUR CHOICE:  ");
             int choice = input.nextInt();
-        if (choice == 1)  {
+        if (choice == 1) {
             boolean login = lib.adminLogin();
             if (login == true) {
-                System.out.println("FOLLOWING FUNCTIONATLITIES ARE AVAILABLE AS AN ADMIN.\n");
+                System.out.println("\n\nFOLLOWING FUNCTIONATLITIES ARE AVAILABLE AS AN ADMIN.\n");
+                System.out.println("-----------------------------------------------------\n\n");
                 System.out.println("1. Search Book\n2. Search Member\n3. Show All Books\n4. Show All Members\n5. Add Librarian\n6. View Transaction History\n7. Log Out");
                 while (true) {
                     System.out.print("\nEnter your choice: ");
@@ -31,17 +32,18 @@ public class Main {
                     else if (admChoice == 5) {lib.addLibrarian();}
                     else if (admChoice == 6) {lib.displayTransactions();}
                     else if (admChoice == 7) {
-                        System.out.println("\nLogged Out.");
+                        System.out.println("\n\nLogged Out.");
                         break;
-                    } else {System.out.println("\nInvalid Input.");}
+                    } else {System.out.println("\n\nInvalid Input.");}
                 }
             } 
         } else if (choice == 2) {
-            if (lib.getLibrarian() == null) {System.out.println("\nNo Librarian Found.");}
+            if (lib.getLibrarian() == null) {System.out.println("\n\nNo Librarian Found.");}
             else {
                 boolean login2 = lib.getLibrarian().login();
                 if (login2 == true) {
-                    System.out.println("FOLLOWING FUNCTIONATLITIES ARE AVAILABLE AS A LIBRARIAN.\n");
+                    System.out.println("\n\nFOLLOWING FUNCTIONATLITIES ARE AVAILABLE AS A LIBRARIAN.\n");
+                    System.out.println("--------------------------------------------------------\n");
                     System.out.println("1. Add New Book\n2. Remove Book\n3. Issue Book\n4. Return Book\n5. View Issued Books\n6. Add New Member\n7. Update Book Details\n8. Display Books\n9. Display Members\n10. Log Out");
                     while (true) {
                         System.out.print("\nEnter your choice: ");
@@ -56,9 +58,9 @@ public class Main {
                         else if (libChoice == 8) {lib.getLibrarian().displayBooks(lib);}
                         else if (libChoice == 9) {lib.getLibrarian().displayMembers(lib);}
                         else if (libChoice == 10) {
-                            System.out.println("\nLogged Out");
+                            System.out.println("\n\nLogged Out");
                             break;
-                        } else {System.out.println("");}
+                        } else {System.out.println("\n\nInvalid Choice.");}
                     }
                 }
             }
@@ -71,39 +73,44 @@ public class Main {
     public static void main(String[] args) {
         
         Library mainLibrary = new Library();
-        // mainFlow(mainLibrary);
+        mainFlow(mainLibrary);
 
-        Member m1 = new Member("Ahmed", "Lahore", 123456, "ahmedbilal2857@gmail.com", "AB234", mainLibrary);
-        System.out.println(m1.toString());
+        Member m1 = new Member("Ahmed", "Lahore", 123456, "ahmedbilal2857@gmail.com", "AB234");
+        // System.out.println(m1.toString());
         Librarian l1 = new Librarian("Muhammad", "Pindi", 65432, "bilal@gmail.com", "LI2345");
-        System.out.println(l1.toString());
+        // System.out.println(l1.toString());
       
 
-        Book b1 = new Book("B123", "Python", 1234, "Talha", "Ahmed");
-        Book b2 = new Book("B456", "Java", 765, "Talha", "Ahmed");
-        Book b3 = new Book("B789", "JavaScript", 9873, "Talha", "Ahmed");
+        // Book b1 = new Book("B123", "Python", 1234, "Talha", "Ahmed");
+        // Book b2 = new Book("B456", "Java", 765, "Talha", "Ahmed");
+        // Book b3 = new Book("B789", "JavaScript", 9873, "Talha", "Ahmed");
 
-        mainLibrary.getBooks().add(b1);
-        mainLibrary.getBooks().add(b2);
-        // mainLibrary.books.add(b3);
+        // mainLibrary.getBooks().add(b1);
+        // mainLibrary.getBooks().add(b2);
+        // // mainLibrary.books.add(b3);
 
-        // mainLibrary.members.add(m1);
+        // mainLibrary.getMembers().add(m1);
+        // mainLibrary.getMembers().add(m1);
+        
+        // l1.addNewMember(mainLibrary);
 
-        m1.borrowBook(mainLibrary, l1);
-        m1.borrowBook(mainLibrary, l1);
+        // System.out.println(mainLibrary.getMembers().toString());
 
-        // // m1.borrowBook(mainLibrary, l1);
+        // m1.borrowBook(mainLibrary, l1);
+        // m1.borrowBook(mainLibrary, l1);
 
-        l1.viewIssued(mainLibrary);
+        // // // m1.borrowBook(mainLibrary, l1);
+
+        // l1.viewIssued(mainLibrary);
 
         
 
-        mainLibrary.displayTransactions();
+        // mainLibrary.displayTransactions();
 
-        // m1.returnBook(mainLibrary, l1);
+        // // m1.returnBook(mainLibrary, l1);
 
 
-        mainLibrary.displayTransactions();
+        // mainLibrary.displayTransactions();
 
 
         // mainLibrary.displayFines();

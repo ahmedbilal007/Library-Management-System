@@ -26,14 +26,11 @@ public class Fine {
         this.isPaid = true;
     }
 
-    public String displayFineDetails() {
+    @Override
+    public String toString() {
         return String.format("Fine Id: %s\nMember: %s\nTransaction ID: %s\nDays Late: %d\nFine Amount: %f\nPaid: %b",this.fineId, this.memberID, this.transactionID, this.daysLate
         , this.calculateFine(), this.isPaid);
     }
-
-    // public void payFine(Member m, Library lib) {
-    //     System.out.println(this.calculateFine() + " amount is due by this member.");
-    // }
 
     public String getFineId() {
         return fineId;
@@ -98,7 +95,4 @@ public class Fine {
     public void setCount(int count) {
         this.count = count;
     }
-
-
-
 }

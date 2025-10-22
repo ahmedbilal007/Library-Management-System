@@ -4,12 +4,10 @@ public class Member extends User{
     private final int MAX_ALLOWED = 3;
     private int borrowedCount;
 
-    public Member(String name, String address, int contact, String email, String memberID, Library lib) {
+    public Member(String name, String address, int contact, String email, String memberID) {
         super(name, address, contact, email);
         this.memberID = memberID;
         this.borrowedBooks = new Book[MAX_ALLOWED];
-        if (lib.searchbyID(memberID) == false) lib.getMembers().add(this);
-        else System.out.println("Member Already Added");
     }
 
     public void borrowBook(Library lib, Librarian l1) {
@@ -23,7 +21,7 @@ public class Member extends User{
     
     public void displayBorrowed() {
         for (Book b : borrowedBooks) {
-            if (b != null) System.out.println(b.getDetails());
+            if (b != null) System.out.println(b.toString());
         }
     }
 

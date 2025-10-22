@@ -49,7 +49,8 @@ public class Librarian extends User{
         System.out.print("Enter Book Title: ");
         String title = input.nextLine();
         System.out.println();
-        System.out.println("Check whether member is in Library Membership.");
+        System.out.println("Check whether this member is in Library Membership.");
+        System.out.println("---------------------------------------------------");
         System.out.println();
         Member m = lib.searchMember();
 
@@ -91,46 +92,47 @@ public class Librarian extends User{
             for (Transaction t : lib.getTransactions()) {
                 if (t.getBookid().equals(b.getBookID())) {
                     t.setStatusOfTransaction(true);
-                    t.returnedDate = LocalDate.now();
+                    t.setReturned();
                 }
             }
         }
     }
     
-
-    public String viewIssued(Library lib) {
+    public void viewIssued(Library lib) {
         for (Book b : lib.getBooks()) {
             if (b.isBookAvailable() == false) {
-                // System.out.println(b.getDetails());
-                return b.getDetails();
+                System.out.println(b.toString());
             } 
         }
-        return "No Book Issued";
     }
 
     public void addNewMember(Library lib) {
-        System.out.println("Enter name: ");
+        System.out.print("Enter name: ");
         String name = input.nextLine();
-        System.out.println("Enter address: ");
+        System.out.print("Enter address: ");
         String address = input.nextLine();
-        System.out.println("Enter contact: ");
+        System.out.print("Enter contact: ");
         int contact = input.nextInt();
         input.nextLine();
-        System.out.println("Enter email: ");
+        System.out.print("Enter email: ");
         String email = input.nextLine();
         if (checkEmail(email) == false) {
-            System.out.println("Invalid Email. Enter again: ");
-             email = input.nextLine();
+            System.out.print("Invalid Email. Enter again: ");
+            email = input.nextLine();
         }
-        System.out.println("Enter Member ID: ");
+        if (lib.duplicateEmail(email) == true) {
+            System.out.print("Email already added to the system. Enter a different one: ");
+            email = input.nextLine();
+        }
+        System.out.print("Enter Member ID: ");
         String id = input.nextLine();
 
-        if (lib.searchbyID(id) == false ) {
-        Member m = new Member(name, address, contact, email, id, lib);
-        System.out.println("");
-        } else {
-            System.out.println("Member Already Added...");
+        if (lib.searchbyID(id) == true ) {
+            System.out.print("A member with this ID is already present. Enter a different ID: ");
+            id = input.nextLine();
         } 
+        Member m = new Member(name, address, contact, email, id);
+        lib.getMembers().add(m);
     }
 
     public void updateBookDetails(Library lib) {
@@ -142,9 +144,10 @@ public class Librarian extends User{
             System.out.print("Do you want to update Book ID (y/n): ");
             choice = input.next();
             if (choice.equals("y")) {
-            System.out.print("Enter Book ID: ");
-            String ID = input.nextLine();
-            b.setBookID(ID);
+                System.out.print("Enter Book ID: ");
+                String ID = input.nextLine();
+                b.setBookID(ID);
+
             } else if (choice.equals("n")) System.out.println("Book ID unchanged.");
 
             System.out.print("Do you want to update Book Title (y/n): ");
