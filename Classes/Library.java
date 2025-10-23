@@ -5,7 +5,7 @@ public class Library {
     private ArrayList<Book> books = new ArrayList<>();
     private ArrayList<Member> members = new ArrayList<>();
     private ArrayList<Transaction> transactions = new ArrayList<>();
-    private Librarian supervisor = new Librarian("Ahmed", "Lahore", 12345, "bilal235@gmail.com", "SP23456");
+    private Librarian supervisor = new Librarian("Ahmed", "Lahore", "12345", "bilal235@gmail.com", "SP23456");
 
     private Librarian librarian = null;
     private int booksCount;
@@ -36,8 +36,49 @@ public class Library {
         }
         return true;
     }
+
+    public boolean librarianLogin(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("LIBRARIAN LOGIN");
+        System.out.println("ENTER USERNAME AND ID.\n");
+        System.out.print("Enter Username: ");
+        String username = input.nextLine();
+        System.out.print("Enter ID: ");
+        String id = input.nextLine();
+
+        if (username.equals(this.librarian.getName()) && id.equals(this.librarian.getLibrarianID())) {
+            System.out.println("Logged In Successfully.");
+            return true;
+        } else {
+            System.out.println("Invalid Username Or ID.");
+        }
+        return false;
+    }
+
+    public Member memberLogin() {
+        if (this.members.isEmpty() == true) {
+            System.out.println("No Member Registered.");
+            return null;
+        } 
+        Scanner input = new Scanner(System.in);
+        System.out.println("MEMBER LOGIN");
+        System.out.println("ENTER USERNAME AND ID.\n");
+        System.out.print("Enter Username: ");
+        String username = input.nextLine();
+        System.out.println("Enter ID: ");
+        String id = input.nextLine();
+        for (int i = 0; i<members.size(); i++) {
+            if (username.equals(members.get(i).getName()) && id.equals(members.get(i).getMemberID())) {
+                System.out.println("Logged In Successfully");
+                return members.get(i);
+            } else if (i == members.size()) {
+                System.out.println("Invalid Username or ID.");
+            }
+        }
+        return null;
+    }
     
-    public boolean searchBook() {
+    public Book searchBook() {
         boolean found = false;
         System.out.println("Search Book by: \n1. Title\n2. Book ID\n3. Book ISBN");
         System.out.println("Enter your choice: ");
@@ -51,7 +92,7 @@ public class Library {
                 for (Book b : books) {
                     if (b.getTitle().equals(title)) {
                     System.out.println("Book Found.");
-                    return true;
+                    return b;
                 } else {System.out.println("Book Not Found.");}
                 }
                 break;
@@ -62,7 +103,7 @@ public class Library {
                 for (Book b : books) {
                     if (b.getBookID().equals(id)) {
                         System.out.println("Book Found.");
-                        return true;
+                        return b;
                     } else {System.out.println("Book Not Found.");}
                 }
                 break;
@@ -74,7 +115,7 @@ public class Library {
                 for (Book b : books) {
                     if (b.getISBN() == isbn) {
                         System.out.println("Book Found.");
-                        return true;
+                        return b;
                     } else {System.out.println("Book Not Found.");}
             }
             break;
@@ -84,10 +125,10 @@ public class Library {
                 break;
             }
         }
-        return false;
+        return null;
     }
 
-    public boolean searchbyID(String id) {
+    public boolean searchMemberbyID(String id) {
         for (Member m : members) {
             if (m.getMemberID().equals(id)) return true;
         }
@@ -129,9 +170,9 @@ public class Library {
     }
 
 
-    public boolean addBook() {
+    public String addBook() {
         Scanner input = new Scanner(System.in);
-        Book newBook = new Book();
+        Book newBook;
         System.out.print("Enter Book ID: ");
         String ID = input.nextLine();
         System.out.println();
@@ -140,11 +181,11 @@ public class Library {
                 { 
                     System.out.println("A book is already available with this ID.");
                     System.out.print("Enter a different ID: ");
-                    String id = input.nextLine();
+                    ID = input.nextLine();
+                    // newBook.setBookID(ID);
                     System.out.println();
-                    newBook.setBookID(id);
                 }
-            else if (i == books.size()) newBook.setBookID(ID); 
+            // else if (i == books.size()) newBook.setBookID(ID); 
         }
 
         System.out.print("Enter Book Title: ");
@@ -155,11 +196,11 @@ public class Library {
             {
                 System.out.println("A book is already available with this Title.");
                 System.out.print("Enter a different Title: ");
-                String titl = input.nextLine();
+                title = input.nextLine();
                 System.out.println();
-                newBook.setTitle(titl);
+                // newBook.setTitle(title);
             }
-            else if (i == books.size()) newBook.setTitle(title); 
+            // else if (i == books.size()) newBook.setTitle(title); 
         }
         
         System.out.print("Enter Book ISBN: ");
@@ -170,31 +211,29 @@ public class Library {
             {
                 System.out.println("A book is already available with this ISBN.");
                 System.out.print("Enter a different ISBN: ");
-                int is = input.nextInt();
+                ISBN = input.nextInt();
                 System.out.println();
-                newBook.setISBN(is);
-
+                // newBook.setISBN(ISBN);
             }
-            else if (i == books.size()) newBook.setISBN(ISBN); 
+            // else if (i == books.size()) newBook.setISBN(ISBN); 
         }
         input.nextLine();
         System.out.print("Enter Publisher Name: ");
         String publisher = input.nextLine();
         System.out.println();
-        newBook.setPublisher(publisher);
+        // newBook.setPublisher(publisher);
         System.out.print("Enter Author Name: ");
         String author = input.nextLine();
         System.out.println();
-        newBook.setAuthor(author);
+        // newBook.setAuthor(author);
+        newBook = new Book(ID, title, ISBN, publisher, author);
         books.add(newBook);
         incBookCount();
-        System.out.println("------------------- BOOK ADDED SUCCESSFULLY ------------------");
-        System.out.println();
-        return true;
+        return "------------- BOOK ADDED SUCCESSFULLY -------------\n";
     }
 
 
-    public void removeBook() {
+    public String removeBook() {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter Book ID: ");
         String bookID = input.nextLine();
@@ -203,23 +242,20 @@ public class Library {
             if (books.get(i).getBookID().equals(bookID)){
                 if (books.get(i).isBookAvailable() == true)
                 {
-                    System.out.println("Permanently remove the Book(y/n)? : ");
+                    System.out.print("Permanently remove the Book(y/n)? : ");
                     String choice = input.nextLine();
-                    System.out.println();
-                    if (choice == "y") {
-                    books.remove(books.get(i));
+                    if (choice.equals("y")) {
+                    this.books.remove(books.get(i));
                     decBookCount();
-                    System.out.println("Removed Successfully.");
-                    System.out.println();
+                    return "Removed Successfully\n";
                     } else {
-                        System.out.println("Book not removed.");
-                        System.out.println();
+                        return "Book Not Removed.\n";
                     }
-                } else System.out.println("This book is borrowed by someone.\n");
+                } else return "This Book is Borrowed by any Member.\n";
             } else if (i == books.size()) {
-                System.out.println("Book not Found.\n");
+                return "Book not Found.\n";
             }
-        }
+        } return "Book Not Found";
     }
 
     public void showAllBooks() {
@@ -235,10 +271,10 @@ public class Library {
     }
 
 
-    public void addLibrarian() {
+    public String addLibrarian() {
         Scanner input = new Scanner(System.in);
         if (this.librarian != null) {
-            System.out.println("A librarian is already available for this library. Can't add another librarian.");
+            return "A librarian is already available for this library. Can't add another librarian.";
         } else {
             System.out.print("Enter Librarian Name: ");
             String name = input.nextLine();
@@ -249,10 +285,11 @@ public class Library {
             System.out.print("Enter Libarian ID: ");
             String id = input.nextLine();
             System.out.print("Enter Contact: ");
-            int contact = input.nextInt();
+            String contact = input.nextLine();
             this.librarian = new Librarian(name, address, contact, email, id);
             this.assignSupervisor(librarian);
             System.out.println("Librarian Added Successfully.");
+            return "Librarian Added Successfully";
         }
     }
 

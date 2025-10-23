@@ -7,27 +7,11 @@ public class Librarian extends User{
     private String librarianID;
     private Librarian supervisor;
 
-    public Librarian(String name, String address, int contact, String email, String librarianID) {
+    public Librarian(String name, String address, String contact, String email, String librarianID) {
         super(name, address, contact, email);
         this.librarianID = librarianID;
     }
  
-    public boolean login(){
-        System.out.println("ENTER USERNAME AND ID.\n");
-        System.out.print("Enter Username: ");
-        String username = input.nextLine();
-        System.out.print("Enter ID: ");
-        String id = input.nextLine();
-
-        if (username.equals(this.getName()) && id.equals(this.getLibrarianID())) {
-            System.out.println("Logged In Successfully.");
-            return true;
-        } else {
-            System.out.println("Invalid Username Or ID.");
-        }
-        return false;
-    }
-
     public void setSupervisor(Librarian supervisor) {
         this.supervisor = supervisor;
     }
@@ -40,8 +24,8 @@ public class Librarian extends User{
         lib.incBookCount();
     }
 
-    public void removeBook(Library lib) {
-        lib.removeBook();
+    public String removeBook(Library lib) {
+        return lib.removeBook();
     }
 
 
@@ -106,17 +90,16 @@ public class Librarian extends User{
         }
     }
 
-    public void addNewMember(Library lib) {
+    public String addNewMember(Library lib) {
         System.out.print("Enter name: ");
         String name = input.nextLine();
         System.out.print("Enter address: ");
         String address = input.nextLine();
         System.out.print("Enter contact: ");
-        int contact = input.nextInt();
-        input.nextLine();
+        String contact = input.nextLine();
         System.out.print("Enter email: ");
         String email = input.nextLine();
-        if (checkEmail(email) == false) {
+        if (isEmailValid(email) == false) {
             System.out.print("Invalid Email. Enter again: ");
             email = input.nextLine();
         }
@@ -127,19 +110,20 @@ public class Librarian extends User{
         System.out.print("Enter Member ID: ");
         String id = input.nextLine();
 
-        if (lib.searchbyID(id) == true ) {
+        if (lib.searchMemberbyID(id) == true ) {
             System.out.print("A member with this ID is already present. Enter a different ID: ");
             id = input.nextLine();
         } 
         Member m = new Member(name, address, contact, email, id);
         lib.getMembers().add(m);
+        return "Member Added Successfully";
     }
 
-    public void updateBookDetails(Library lib) {
+    public String updateBookDetails(Library lib) {
         String choice = "";
-        System.out.println("Enter Book ID: ");
+        System.out.println("Enter Book ID for the Book you want to update: ");
         String title = input.nextLine();
-        if (lib.searchBook() == true) {
+        if (lib.searchBook() != null) {
             Book b = Book.getBook(lib, title);
             System.out.print("Do you want to update Book ID (y/n): ");
             choice = input.next();
@@ -182,7 +166,10 @@ public class Librarian extends User{
                 String author = input.nextLine();
                 b.setAuthor(author);
             } else if (choice.equals("n")) System.out.println("Book Author unchanged.");
+
+            return "Updated Book Details";
         }
+        return "Book Not Found";
     }  
 
     public void displayMembers(Library lib) {

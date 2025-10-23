@@ -1,11 +1,12 @@
+// Library Member Class inherited from User Class
 public class Member extends User{
     private String memberID;
     private Book[] borrowedBooks;
     private final int MAX_ALLOWED = 3;
     private int borrowedCount;
 
-    public Member(String name, String address, int contact, String email, String memberID) {
-        super(name, address, contact, email);
+    public Member(String name, String address, String contact, String email, String memberID) {
+        super(name, address, contact, email);       // super class constructor
         this.memberID = memberID;
         this.borrowedBooks = new Book[MAX_ALLOWED];
     }
@@ -13,7 +14,6 @@ public class Member extends User{
     public void borrowBook(Library lib, Librarian l1) {
         l1.issueBook(lib);
     }   
-
 
     public void returnBook(Library lib, Librarian l1) {
         l1.returnBook(lib, this);
@@ -25,7 +25,7 @@ public class Member extends User{
         }
     }
 
-    public void viewHistory(Library lib) {
+    public void viewTransactionHistory(Library lib) {
         for (Transaction t : lib.getTransactions()) {
             if (t.getMemberID().equals(this.memberID)) {
                 System.out.println(t.toString());

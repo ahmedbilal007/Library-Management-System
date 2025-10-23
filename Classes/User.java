@@ -1,14 +1,14 @@
 public abstract class User {
     private String name;
     private String address;
-    private int contact;
+    private String contact;
     private String email;
 
-    public User(String name, String address, int contact, String email) {
+    public User(String name, String address, String contact, String email) {
         this.name = name;
         this.address = address;
         this.contact = contact;
-        if (checkEmail(email) == true) this.email = email;
+        if (isEmailValid(email) == true) this.email = email;
         else {
             System.out.println("Invalid Email Address.");
         }
@@ -30,11 +30,11 @@ public abstract class User {
         this.address = address;
     }
 
-    public int getContact() {
+    public String getContact() {
         return contact;
     }
 
-    public void setContact(int contact) {
+    public void setContact(String contact) {
         this.contact = contact;
     }
 
@@ -46,12 +46,12 @@ public abstract class User {
         this.email = email;
     }
 
-    public boolean checkEmail(String email) {
+    public boolean isEmailValid(String email) {
         return email.endsWith("@gmail.com");
     }
 
     @Override
     public String toString() {
-        return String.format("Name: %s\nAddress: %s\nEmail: %s\nContact: %d", this.getName(), this.getAddress(), this.getEmail(), this.getContact());
+        return String.format("Name: %s\nAddress: %s\nEmail: %s\nContact: %s", this.getName(), this.getAddress(), this.getEmail(), this.getContact());
     }
  }
