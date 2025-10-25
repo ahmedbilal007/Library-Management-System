@@ -6,8 +6,10 @@ public class Driver {
         Library mainLibrary = new Library();
         Book b1 = new Book("B123", "Python", "1234", "Talha", "Ahmed");
         Librarian l1 = new Librarian("Muhammad", "Pindi", "03247102857", "ahmedbilal@gmail.com", "LIB2345");
+        Member ahmed = new Member("Ahmed", "Lahore" , "123456", "abilal@gmail.com", "AB12345");
         mainLibrary.getBooks().add(b1);
         mainLibrary.setLibrarian(l1);
+        mainLibrary.getMembers().add(ahmed);
         int mainChoice = 0;
         int admChoice = 0;
         int libChoice = 0;
@@ -40,6 +42,7 @@ public class Driver {
                         System.out.println("------------------------------------");
                         System.out.println("\n      WELCOME TO ADMIN PORTAL");
                         System.out.println("\n------------------------------------\n");
+                        admChoice = 0;
                         while (admChoice != 5) {
                             System.out.println("-----------------------------------------------------------");
                             System.out.println("FOLLOWING FUNCTIONATLITIES ARE AVAILABLE AS AN ADMIN.");
@@ -80,7 +83,7 @@ public class Driver {
                                 }
                                 case 4: {
                                     System.out.println("\nDISPLAYING ALL TRANSACTIONS\n");
-                                    mainLibrary.displayTransactions();
+                                    System.out.println(mainLibrary.displayTransactions());
                                     break;
                                 }
                                 case 5: {
@@ -108,7 +111,8 @@ public class Driver {
                         System.out.println("------------------------------------");
                         System.out.println("\n      WELCOME TO LIBRARIAN PORTAL");
                         System.out.println("\n------------------------------------\n");
-                        while (libChoice != 10) {
+                        libChoice = 0;
+                        while (libChoice != 12) {
                             System.out.println("------------------------------------------------------------");
                             System.out.println("FOLLOWING FUNCTIONATLITIES ARE AVAILABLE AS A LIBRARIAN.");
                             System.out.println("------------------------------------------------------------\n");
@@ -412,6 +416,7 @@ public class Driver {
                         System.out.println("------------------------------------");
                         System.out.println("\n      WELCOME TO MEMBER PORTAL");
                         System.out.println("\n------------------------------------\n");
+                        memChoice = 0;
                         while (memChoice != 4) {
                             System.out.println("----------------------------------------------------");
                             System.out.println("FOLLOWING FUNCTIONALITIES ARE AVAILABLE AS A MEMBER");
