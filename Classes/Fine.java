@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class Fine {
     private String fineId;
     private String memberID;
@@ -9,9 +10,9 @@ public class Fine {
     private boolean isPaid;
     private int count = 1;
 
-    public Fine(String m,int daysLate, String transactionId) {
+    public Fine(String memId,int daysLate, String transactionId) {
         this.fineId = "FN-" + String.format("%03d", count++);
-        this.memberID = m;
+        this.memberID = memId;
         this.daysLate = daysLate;
         this.fineAmount = calculateFine();
         isPaid = false;

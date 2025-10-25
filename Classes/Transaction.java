@@ -1,6 +1,6 @@
-import java.text.DateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 
 public class Transaction {
@@ -16,15 +16,14 @@ public class Transaction {
     private Fine fine;
 
 
-    public Transaction(String memberID, String bookId, boolean isReturned, Library l1) {
+    public Transaction(String memberID, String bookId, boolean isReturned, ArrayList<Transaction> transactions) {
         this.transactionID = "CTS-LHR-" + String.format("%03d", count++);
         this.memberID = memberID;
         this.bookId = bookId; 
         this.isReturned = isReturned;
 
         issueDate = LocalDate.now();
-        dueDate = issueDate.plusDays(15);
-
+        dueDate = issueDate.plusDays(Library.getDAY_ALLOWED());
 
         Period p = Period.between(dueDate, LocalDate.now());
         int days = p.getDays();
@@ -43,7 +42,6 @@ public class Transaction {
 
         return String.format("\n--- Transaction Details ---\nTransaction ID: %s\nMember ID: %s\nBook ID: %s\nStatus: %b\nIssuing Date: %s\nDue Date: %s\nReturn Date: %s\nFine Amount: %s", 
         this.transactionID, this.memberID, this.bookId, this.isReturned, issued, due, returned, fineA);
-
     }
 
     public void setMemberId(String id) {this.memberID = id;}
@@ -57,6 +55,7 @@ public class Transaction {
     public Fine getFine() {
         return this.fine;
     }
+
     public String getMemberID() {return this.memberID;}
     public String getBookid() {return this.bookId;}
     public boolean getStatus() {return this.isReturned;}

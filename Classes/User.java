@@ -42,8 +42,12 @@ public abstract class User {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String setEmail(String email) {
+        if (isEmailValid(email) == true) {
+            this.email = email;
+            return "EMAIL SET";
+        }
+        else return "INVALID EMAIL.";
     }
 
     public boolean isEmailValid(String email) {

@@ -1,36 +1,33 @@
+import java.util.ArrayList;
+
 // Library Member Class inherited from User Class
 public class Member extends User{
     private String memberID;
     private Book[] borrowedBooks;
-    private final int MAX_ALLOWED = 3;
     private int borrowedCount;
 
     public Member(String name, String address, String contact, String email, String memberID) {
         super(name, address, contact, email);       // super class constructor
         this.memberID = memberID;
-        this.borrowedBooks = new Book[MAX_ALLOWED];
-    }
-
-    public void borrowBook(Library lib, Librarian l1) {
-        l1.issueBook(lib);
-    }   
-
-    public void returnBook(Library lib, Librarian l1) {
-        l1.returnBook(lib, this);
+        this.borrowedBooks = new Book[Library.getMaxAllowed()];
     }
     
-    public void displayBorrowed() {
-        for (Book b : borrowedBooks) {
-            if (b != null) System.out.println(b.toString());
+    public String displayBorrowed() {
+        String borrowed = "";
+        for (Book book : borrowedBooks) {
+            if (book != null) borrowed += book.toString() + "\n";
         }
+        return borrowed;
     }
 
-    public void viewTransactionHistory(Library lib) {
-        for (Transaction t : lib.getTransactions()) {
-            if (t.getMemberID().equals(this.memberID)) {
-                System.out.println(t.toString());
+    public String viewTransactionHistory(ArrayList<Transaction> transactions) {
+        String memberTransaction = "";
+        for (Transaction transaction : transactions) {
+            if (transaction.getMemberID().equals(this.memberID)) {
+                memberTransaction += transaction.toString();
             }
         }
+        return memberTransaction;
     }
     
     @Override
@@ -58,7 +55,4 @@ public class Member extends User{
         this.borrowedCount--;
     }
 
-    public int getMaxAllowed() {
-        return this.MAX_ALLOWED;
-    }
 }
