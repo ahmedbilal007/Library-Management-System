@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 public class Library {
 
 
@@ -9,8 +8,11 @@ public class Library {
     private Librarian supervisor = new Librarian("Ahmed", "Lahore", "12345", "bilal235@gmail.com", "SP23456");
     private static final int MAX_ALLOWED = 3;
     private static int DAYS_ALLOWED = 30;
+    private static final int FINE_PER_DAY = 50;
     private Librarian librarian = null;
     private int booksCount;
+    private static double totalFine;
+     
 
     public void incBookCount() {
         this.booksCount++;
@@ -22,6 +24,7 @@ public class Library {
 
     public static boolean isEmailValid(String email){
         return email.endsWith("@gmail.com");
+        // return email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
     }
 
     public boolean adminLogin(String username, int password){
@@ -84,6 +87,7 @@ public class Library {
 
     public String addLibrarian(String name, String address, String contact, String email, String librarianID) {
         this.librarian = new Librarian(name, address, contact, email, librarianID);
+        assignSupervisor(librarian);
         return "Librarian Added Successfully";
     }
 
@@ -159,6 +163,17 @@ public class Library {
     public static int getMAX_ALLOWED() {
         return MAX_ALLOWED;
     }
-    
+
+    public static void setTotalFine(double totalFine) {
+        Library.totalFine = totalFine;
+    }
+
+    public static double getTotalFine() {
+        return totalFine;
+    }
+
+    public static int getFinePerDay() {
+        return FINE_PER_DAY;
+    }
 }
 

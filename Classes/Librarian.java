@@ -79,17 +79,22 @@ public class Librarian extends User{
     }
 
     public String returnBook(Book book, Member member, ArrayList<Transaction> transactions) {
+        boolean found = false;
         for (int i = 0; i<member.getBorrowedBooks().length; i++) {
             if (member.getBorrowedBooks()[i] != null && member.getBorrowedBooks()[i].equals(book)) {
                 member.getBorrowedBooks()[i] = null;
                 member.decBorrowedCount();
                 book.incAvailableQuantity();
-            } else {return "BOOK NOT FOUND IN THIS MEMBER'S BORROWED BOOKS";}
+                found = true;
+                break;
+            } 
         }
+        if (!found) return "BOOK NOT FOUND IN THIS MEMBER'S BORROWED BOOKS";
         for (Transaction transaction : transactions) {
             if (transaction.getBookid().equals(book.getBookID())) {
                 transaction.setStatusOfTransaction(true);
                 transaction.setReturned();
+                Library.setTotalFine(Library.getTotalFine() + transaction.getFine().getFineAmount());
             }
         }
         return "BOOK RETURNED";

@@ -32,7 +32,7 @@ public class Member extends User{
     
     @Override
     public String toString() {
-        return String.format("--- Member Details ---\n%s\nMember ID: %s", super.toString(), this.getMemberID());
+        return String.format("\n--- Member Details ---\n%s\nMember ID: %s", super.toString(), this.getMemberID());
     }
 
     public String getMemberID() {

@@ -8,10 +8,7 @@ public abstract class User {
         this.name = name;
         this.address = address;
         this.contact = contact;
-        if (isEmailValid(email) == true) this.email = email;
-        else {
-            System.out.println("Invalid Email Address.");
-        }
+        setEmail(email);
     }
 
     public String getName() {
@@ -43,16 +40,13 @@ public abstract class User {
     }
 
     public String setEmail(String email) {
-        if (isEmailValid(email) == true) {
+        if (Library.isEmailValid(email) == true) {
             this.email = email;
             return "EMAIL SET";
         }
         else return "INVALID EMAIL.";
     }
 
-    public boolean isEmailValid(String email) {
-        return email.endsWith("@gmail.com");
-    }
 
     @Override
     public String toString() {

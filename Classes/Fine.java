@@ -1,14 +1,11 @@
-import java.util.Scanner;
-
 public class Fine {
     private String fineId;
     private String memberID;
     private String transactionID;
     private int daysLate;
     private double fineAmount;
-    private double finePerDay = 50;
     private boolean isPaid;
-    private int count = 1;
+    private static int count = 1;
 
     public Fine(String memId,int daysLate, String transactionId) {
         this.fineId = "FN-" + String.format("%03d", count++);
@@ -20,12 +17,9 @@ public class Fine {
     }
     
     public double calculateFine() {
-        return this.daysLate * this.finePerDay;
+        return this.daysLate * Library.getFinePerDay();
     }
 
-    public void markPaid() {
-        this.isPaid = true;
-    }
 
     @Override
     public String toString() {
@@ -71,14 +65,6 @@ public class Fine {
 
     public void setFineAmount(double fineAmount) {
         this.fineAmount = fineAmount;
-    }
-
-    public double getFinePerDay() {
-        return finePerDay;
-    }
-
-    public void setFinePerDay(double finePerDay) {
-        this.finePerDay = finePerDay;
     }
 
     public boolean isIsPaid() {

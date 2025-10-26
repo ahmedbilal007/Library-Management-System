@@ -23,11 +23,11 @@ public class Book {
     }
 
     public String toString() {
-        return String.format("--- BOOK DETAILS ---\nBook Title: %s\nBook ID: %s\nISBN: %s\nAuthor: %s\nPublisher: %s\nTotal Books: %d\nAvailable: %d",
+        return String.format("\n--- BOOK DETAILS ---\nBook Title: %s\nBook ID: %s\nISBN: %s\nAuthor: %s\nPublisher: %s\nTotal Books: %d\nAvailable: %d",
         this.getTitle(),this.getBookID(), this.getISBN(), this.getAuthor(), this.getPublisher(), this.bookQuantity, this.getAvailableQuantity());
     }
     public boolean isBookAvailable() {
-        if (this.bookQuantity > 0) return true;
+        if (this.availableQuantity > 0) return true;
         return false;
     }
 

@@ -6,7 +6,7 @@ public class Driver {
         Library mainLibrary = new Library();
         Book b1 = new Book("B123", "Python", "1234", "Talha", "Ahmed");
         Librarian l1 = new Librarian("Muhammad", "Pindi", "03247102857", "ahmedbilal@gmail.com", "LIB2345");
-        Member ahmed = new Member("Ahmed", "Lahore" , "123456", "abilal@gmail.com", "AB12345");
+        Member ahmed = new Member("Ahmed", "Lahore" , "123456", "a@gmail.com", "AB12345");
         mainLibrary.getBooks().add(b1);
         mainLibrary.setLibrarian(l1);
         mainLibrary.getMembers().add(ahmed);

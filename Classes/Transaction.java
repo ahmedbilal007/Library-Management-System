@@ -1,5 +1,6 @@
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 
@@ -25,8 +26,7 @@ public class Transaction {
         issueDate = LocalDate.now();
         dueDate = issueDate.plusDays(Library.getDAY_ALLOWED());
 
-        Period p = Period.between(dueDate, LocalDate.now());
-        int days = p.getDays();
+        int days = (int) ChronoUnit.DAYS.between(dueDate, LocalDate.now());
         if (days > 0) { 
             fine = new Fine(memberID, days, this.transactionID);
         } else fine = null;
