@@ -5,12 +5,12 @@ public class Driver {
     public static void main(String[] args) {
         Library mainLibrary = new Library();
 
-        // Book b1 = new Book("CS2342", "Python", "1234452343", "Talha", "Ahmed");
-        // Librarian l1 = new Librarian("Muhammad", "Karachi", "0123456789", "ahmedbilal@gmail.com", "LIB2345");
-        // Member ahmed = new Member("Ahmed", "Lahore" , "0123456789", "abilal@gmail.com", "AB12345");
-        // mainLibrary.getBooks().add(b1);
-        // mainLibrary.setLibrarian(l1);
-        // mainLibrary.getMembers().add(ahmed);
+        Book b1 = new Book("CS2342", "Python", "1234452343", "Talha", "Ahmed");
+        Librarian l1 = new Librarian("Muhammad", "Karachi", "0123456789", "ahmedbilal@gmail.com", "LIB2345");
+        Member ahmed = new Member("Ahmed", "Lahore" , "0123456789", "abilal@gmail.com", "AB12345");
+        mainLibrary.getBooks().add(b1);
+        mainLibrary.setLibrarian(l1);
+        mainLibrary.getMembers().add(ahmed);
         
         int mainChoice = 0;
         int admChoice = 0;
@@ -57,11 +57,13 @@ public class Driver {
                             switch (admChoice) {
                                 case 1: {
                                     System.out.println("\nDISPLAYING ALL BOOKS\n");
+                                    System.out.println("--------------------");
                                     System.out.println(mainLibrary.showAllBooks());
                                     break;
                                 }
                                 case 2: {
                                     System.out.println("\nDISPLAYING ALL MEMBERS\n");
+                                    System.out.println("------------------------");
                                     System.out.println(mainLibrary.showAllMembers());
                                     break;
                                 }
@@ -85,6 +87,7 @@ public class Driver {
                                 }
                                 case 4: {
                                     System.out.println("\nDISPLAYING ALL TRANSACTIONS\n");
+                                    System.out.println("-----------------------------");
                                     System.out.println(mainLibrary.displayTransactions());
                                     break;
                                 }
@@ -102,6 +105,7 @@ public class Driver {
                 }
                 case 2: {
                     System.out.println("LIBRARIAN LOGIN PORTAL\n");
+                    System.out.println("----------------------");
                     System.out.print("Enter Your UserName: ");
                     String libUserName = input.nextLine();
                     System.out.print("Enter Your ID: ");
@@ -170,7 +174,7 @@ public class Driver {
                                     Book b = Book.getBook(mainLibrary.getBooks(), bookID);
                                     if (b == null) {
                                         System.out.println("\nBOOK NOT FOUND\n");
-                                    } else if (b != null && b.isBookAvailable() == false) {
+                                    } else if (b.isBookAvailable() == false) {
                                         System.out.println("\nBOOK BORROWED BY A MEMBER.\n");
                                     } else {
                                         System.out.println("\nDo You Want to Delete This Book Permanently? (y/n) :  ");

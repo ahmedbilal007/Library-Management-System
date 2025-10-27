@@ -15,7 +15,7 @@ public class Member extends User{
     public String displayBorrowed() {
         String borrowed = "";
         for (Book book : borrowedBooks) {
-            if (book != null) borrowed += book.toString() + "\n";
+            if (book != null) borrowed += book.getTitle() + "[" + book.getBookID() + "]\n";
         }
         return borrowed;
     }
@@ -23,7 +23,7 @@ public class Member extends User{
     public String viewTransactionHistory(ArrayList<Transaction> transactions) {
         String memberTransaction = "";
         for (Transaction transaction : transactions) {
-            if (transaction.getMemberID().equals(this.memberID)) {
+            if (transaction.getMember().getMemberID().equals(this.memberID)) {
                 memberTransaction += transaction.toString();
             }
         }

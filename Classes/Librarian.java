@@ -66,7 +66,7 @@ public class Librarian extends User{
                 member.getBorrowedBooks()[member.getBorrowedCount()] = book;
                 member.incBorrowedCount();
                 book.decAvailableQuantity();
-                Transaction t = new Transaction(member.getMemberID(), book.getBookID(), false,transactions);
+                Transaction t = new Transaction(member, book, false,transactions);
                 transactions.add(t);
                 return "BOOK ISSUED.";
             } else {return "BOOK NOT AVAILABLE.";}
@@ -87,10 +87,10 @@ public class Librarian extends User{
         }
         if (!found) return "BOOK NOT FOUND IN THIS MEMBER'S BORROWED BOOKS";
         for (Transaction transaction : transactions) {
-            if (transaction.getBookid().equals(book.getBookID())) {
+            if (transaction.getBook().getBookID().equals(book.getBookID())) {
                 transaction.setStatusOfTransaction(true);
                 transaction.setReturned();
-                Library.setTotalFine(transaction.getFine().getFineAmount());
+                if (transaction.getFine()!=null) {Library.setTotalFine(transaction.getFine().getFineAmount());} 
             }
         }
         return "BOOK RETURNED";
@@ -100,7 +100,7 @@ public class Librarian extends User{
         String issuedBook = "";
         for (Transaction transaction : transactions) {
             if (transaction.getStatus() == false) {
-                issuedBook += transaction.getBookid() + " issued to Member with ID: " + transaction.getMemberID() + "\n";
+                issuedBook += transaction.getBook().getBookID() + " issued to Member with ID: " + transaction.getMember().getMemberID() + "\n";
             } 
         }
         return issuedBook;

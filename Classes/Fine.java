@@ -1,19 +1,19 @@
 public class Fine {
     private String fineId;
-    private String memberID;
-    private String transactionID;
+    private Member member;
+    private Transaction transaction;
     private int daysLate;
     private double fineAmount;
     private boolean isPaid;
     private static int count = 1;
 
-    public Fine(String memId,int daysLate, String transactionId) {
+    public Fine(Member member,int daysLate, Transaction transaction) {
         this.fineId = "FN-" + String.format("%03d", count++);
-        this.memberID = memId;
+        this.member = member;
         this.daysLate = daysLate;
         this.fineAmount = calculateFine();
         isPaid = false;
-        this.transactionID = transactionId;
+        this.transaction = transaction;
     }
     
     public double calculateFine() {
@@ -23,7 +23,7 @@ public class Fine {
 
     @Override
     public String toString() {
-        return String.format("Fine Id: %s\nMember: %s\nTransaction ID: %s\nDays Late: %d\nFine Amount: %f\nPaid: %b",this.fineId, this.memberID, this.transactionID, this.daysLate
+        return String.format("Fine Id: %s\nMember: %s\nTransaction ID: %s\nDays Late: %d\nFine Amount: %f\nPaid: %b",this.fineId, this.member.getMemberID(), this.transaction.getTransactionID(), this.daysLate
         , this.calculateFine(), this.isPaid);
     }
 
@@ -31,8 +31,8 @@ public class Fine {
         return fineId;
     }
 
-    public String getMemberID() {
-        return memberID;
+    public Member getMember() {
+        return member;
     }
 
 
