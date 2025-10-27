@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 public class Library {
 
-
     private ArrayList<Book> books = new ArrayList<>();
     private ArrayList<Member> members = new ArrayList<>();
     private ArrayList<Transaction> transactions = new ArrayList<>();
@@ -12,7 +11,6 @@ public class Library {
     private int booksCount;
     private static double totalFine;
      
-
     public void incBookCount() {
         this.booksCount++;
     }
@@ -28,10 +26,7 @@ public class Library {
     public boolean adminLogin(String username, int password){
         String adminUName = "@ahmed";
         int admPass = 1234;
-        if (!username.equals(adminUName) || (password != admPass)) {
-            return false;
-        }
-        return true;
+        return !(!username.equals(adminUName) || (password != admPass));
     }
 
     public Librarian librarianLogin(String username, String id){

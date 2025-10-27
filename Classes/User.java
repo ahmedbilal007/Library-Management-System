@@ -50,6 +50,6 @@ public abstract class User {
 
     @Override
     public String toString() {
-        return String.format("Name: %s\nAddress: %s\nEmail: %s\nContact: %s", this.getName(), this.getAddress(), this.getEmail(), this.getContact());
+        return String.format("\nName: %s\nAddress: %s\nEmail: %s\nContact: %s", this.getName(), this.getAddress(), this.getEmail(), this.getContact());
     }
  }

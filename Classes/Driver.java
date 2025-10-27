@@ -4,12 +4,14 @@ public class Driver {
 
     public static void main(String[] args) {
         Library mainLibrary = new Library();
-        Book b1 = new Book("B123", "Python", "1234", "Talha", "Ahmed");
-        Librarian l1 = new Librarian("Muhammad", "Pindi", "03247102857", "ahmedbilal@gmail.com", "LIB2345");
-        Member ahmed = new Member("Ahmed", "Lahore" , "123456", "a@gmail.com", "AB12345");
-        mainLibrary.getBooks().add(b1);
-        mainLibrary.setLibrarian(l1);
-        mainLibrary.getMembers().add(ahmed);
+
+        // Book b1 = new Book("CS2342", "Python", "1234452343", "Talha", "Ahmed");
+        // Librarian l1 = new Librarian("Muhammad", "Karachi", "0123456789", "ahmedbilal@gmail.com", "LIB2345");
+        // Member ahmed = new Member("Ahmed", "Lahore" , "0123456789", "abilal@gmail.com", "AB12345");
+        // mainLibrary.getBooks().add(b1);
+        // mainLibrary.setLibrarian(l1);
+        // mainLibrary.getMembers().add(ahmed);
+        
         int mainChoice = 0;
         int admChoice = 0;
         int libChoice = 0;
@@ -144,6 +146,7 @@ public class Driver {
                                     for (Book book : mainLibrary.getBooks()) {
                                         if (book.getISBN().equals(bookISBN)) {
                                             book.incBookQuantity();
+                                            book.incAvailableQuantity();
                                             mainLibrary.incBookCount();
                                             duplicatedISBN = true;
                                         }
@@ -205,7 +208,7 @@ public class Driver {
                                     if (mem == null) {
                                         System.out.println("\nNO MEMBER FOUND WITH THIS ID.\n");
                                     } else {
-                                        System.out.println("Enter Book ID: ");
+                                        System.out.print("Enter Book ID: ");
                                         String bookID = input.nextLine();
                                         Book b = Book.getBook(mainLibrary.getBooks(), bookID);
                                         System.out.println(librarian.returnBook(b, mem, mainLibrary.getTransactions()));
@@ -455,5 +458,6 @@ public class Driver {
             }
 
         }
+        input.close();  // Scanner Closed
     }
 }
