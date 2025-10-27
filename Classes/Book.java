@@ -5,7 +5,6 @@ public class Book {
     private String title;
     private String ISBN;
     private String publisher;
-    private boolean isAvailable;
     private String author;
     private int bookQuantity;
     private int availableQuantity;
@@ -16,12 +15,12 @@ public class Book {
         this.title = title;
         this.ISBN = ISBN;
         this.publisher = publisher;
-        this.isAvailable = true;
         this.author = author;
         this.bookQuantity = 1;
         this.availableQuantity = bookQuantity;
     }
 
+    @Override
     public String toString() {
         return String.format("\n--- BOOK DETAILS ---\nBook Title: %s\nBook ID: %s\nISBN: %s\nAuthor: %s\nPublisher: %s\nTotal Books: %d\nAvailable: %d",
         this.getTitle(),this.getBookID(), this.getISBN(), this.getAuthor(), this.getPublisher(), this.bookQuantity, this.getAvailableQuantity());
@@ -31,8 +30,7 @@ public class Book {
         return false;
     }
 
-    public void setStatus(boolean status) { this.isAvailable = status;}  
-   
+
     public String getTitle() {return this.title;}
 
     public String getBookID() { return bookID;}

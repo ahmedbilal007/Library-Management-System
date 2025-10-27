@@ -302,7 +302,7 @@ public class Driver {
                                     }
                                     System.out.print("Enter Member ID: ");
                                     String id = input.nextLine();
-                                    if (mainLibrary.searchMemberbyID(id) == true) {
+                                    if (mainLibrary.searchMemberbyID(id) != null) {
                                         System.out.print("\nA member with this ID is already added. Enter a different ID: ");
                                         id = input.nextLine();
                                     }

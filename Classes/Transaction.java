@@ -5,11 +5,10 @@ import java.util.ArrayList;
 
 
 public class Transaction {
-    private String transactionID;
+    private final String transactionID;
     private String memberID;
     private String bookId;
     private boolean isReturned;
-    private double fineAmount;
     private static int count = 1;
     private LocalDate issueDate;
     private LocalDate dueDate;

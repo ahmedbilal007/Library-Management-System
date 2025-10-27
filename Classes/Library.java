@@ -5,9 +5,8 @@ public class Library {
     private ArrayList<Book> books = new ArrayList<>();
     private ArrayList<Member> members = new ArrayList<>();
     private ArrayList<Transaction> transactions = new ArrayList<>();
-    private Librarian supervisor = new Librarian("Ahmed", "Lahore", "12345", "bilal235@gmail.com", "SP23456");
     private static final int MAX_ALLOWED = 3;
-    private static int DAYS_ALLOWED = 30;
+    private static final int DAYS_ALLOWED = 30;
     private static final int FINE_PER_DAY = 50;
     private Librarian librarian = null;
     private int booksCount;
@@ -24,7 +23,6 @@ public class Library {
 
     public static boolean isEmailValid(String email){
         return email.endsWith("@gmail.com");
-        // return email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
     }
 
     public boolean adminLogin(String username, int password){
@@ -52,19 +50,19 @@ public class Library {
         return null;
     }
     
-    public boolean searchMemberbyID(String id) {
+    public Member searchMemberbyID(String id) {
         for (Member m : members) {
-            if (m.getMemberID().equals(id)) return true;
+            if (m.getMemberID().equals(id)) return m;
         }
-        return false;
+        return null;
     }
 
-    public boolean searchBookbyID(String id) {
+    public Book searchBookbyID(String id) {
         for (Book b : books)  {
             if (b.getBookID().equals(id)) 
-            return true;
+            return b;
         }
-        return false;
+        return null;
     }
     
 
@@ -87,16 +85,9 @@ public class Library {
 
     public String addLibrarian(String name, String address, String contact, String email, String librarianID) {
         this.librarian = new Librarian(name, address, contact, email, librarianID);
-        assignSupervisor(librarian);
         return "Librarian Added Successfully";
     }
 
-
-    public void assignSupervisor(Librarian llLibrarian) {
-        if (supervisor != null) {
-            librarian.setSupervisor(supervisor);
-        }
-    }
 
     public String displayTransactions() {
         String transactionHistory = "";
@@ -106,12 +97,14 @@ public class Library {
         return transactionHistory;
     }
 
-    public void displayFineHistory() {
+    public String displayFineHistory() {
+        String fines = "";
         for (Transaction t : transactions) {
             if (t.getFine() != null) {
-                System.out.println(t.getFine().toString());
+                fines =  fines + t.getFine().toString() + "\n";
             }
-        }
+        } 
+        return fines;
     }
 
     public ArrayList<Book> getBooks() {
@@ -124,10 +117,6 @@ public class Library {
 
     public ArrayList<Transaction> getTransactions() {
         return transactions;
-    }
-
-    public Librarian getSupervisor() {
-        return supervisor;
     }
 
     public Librarian getLibrarian() {
@@ -153,10 +142,6 @@ public class Library {
         return MAX_ALLOWED;
     }
 
-    public static void setDAY_ALLOWED(int DAY_ALLOWED) {
-        Library.DAYS_ALLOWED = DAY_ALLOWED;
-    }
-
     public static int getDAY_ALLOWED()  {
         return DAYS_ALLOWED;
     }
@@ -164,8 +149,8 @@ public class Library {
         return MAX_ALLOWED;
     }
 
-    public static void setTotalFine(double totalFine) {
-        Library.totalFine = totalFine;
+    public static void setTotalFine(double fine) {
+        Library.totalFine += fine;
     }
 
     public static double getTotalFine() {

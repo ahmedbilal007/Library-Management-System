@@ -31,43 +31,21 @@ public class Fine {
         return fineId;
     }
 
-    public void setFineId(String fineId) {
-        this.fineId = fineId;
-    }
-
     public String getMemberID() {
         return memberID;
     }
 
-    public void setMemberID(String memberID) {
-        this.memberID = memberID;
-    }
-
-    public String getTransactionID() {
-        return transactionID;
-    }
-
-    public void setTransactionID(String transactionID) {
-        this.transactionID = transactionID;
-    }
 
     public int getDaysLate() {
         return daysLate;
     }
-
-    public void setDaysLate(int daysLate) {
-        this.daysLate = daysLate;
-    }
-
+    
     public double getFineAmount() {
         return fineAmount;
     }
 
-    public void setFineAmount(double fineAmount) {
-        this.fineAmount = fineAmount;
-    }
 
-    public boolean isIsPaid() {
+    public boolean isPaid() {
         return isPaid;
     }
 
@@ -79,7 +57,4 @@ public class Fine {
         return count;
     }
 
-    public void setCount(int count) {
-        this.count = count;
-    }
 }

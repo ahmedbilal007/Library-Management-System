@@ -5,16 +5,12 @@ import java.util.Scanner;
 public class Librarian extends User{ 
     Scanner input = new Scanner(System.in);
     private String librarianID;
-    private Librarian supervisor;
 
     public Librarian(String name, String address, String contact, String email, String librarianID) {
         super(name, address, contact, email);
         this.librarianID = librarianID;
     }
  
-    public void setSupervisor(Librarian supervisor) {
-        this.supervisor = supervisor;
-    }
     
     public String addBook(Book b, ArrayList<Book> books, String bookID, String title, String ISBN, String publisher, String author) {
         b = new Book(bookID, title, ISBN, publisher, author);
@@ -94,7 +90,7 @@ public class Librarian extends User{
             if (transaction.getBookid().equals(book.getBookID())) {
                 transaction.setStatusOfTransaction(true);
                 transaction.setReturned();
-                Library.setTotalFine(Library.getTotalFine() + transaction.getFine().getFineAmount());
+                Library.setTotalFine(transaction.getFine().getFineAmount());
             }
         }
         return "BOOK RETURNED";
@@ -104,7 +100,7 @@ public class Librarian extends User{
         String issuedBook = "";
         for (Transaction transaction : transactions) {
             if (transaction.getStatus() == false) {
-                issuedBook += transaction.getBookid() + "\n";
+                issuedBook += transaction.getBookid() + " issued to Member with ID: " + transaction.getMemberID() + "\n";
             } 
         }
         return issuedBook;
